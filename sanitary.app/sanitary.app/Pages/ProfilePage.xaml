@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="sanitary.app.Pages.ProfilePage"
+             Title="Профиль"
+             BackgroundColor="#f3f3f3">
+    <ContentPage.Content>
+        <!--Страница профиля-->
+        <Frame BackgroundColor="White" Margin="0,10" Padding="20,30" VerticalOptions="Start">
+            <StackLayout Spacing="15">
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType ="Label">
+                            <Setter Property="FontSize" Value="16"/>
+                            <Setter Property="TextColor" Value="Black"/>
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <Label Text="Иван Иванов"/>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="E-mail: "/>
+                                <Span Text="IvanIvanov@gmail.com"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Grid>
+                    <StackLayout x:Name="EditPass" Orientation="Horizontal" Spacing="10" IsVisible="True">
+                        <Image Source="ic_edit_pass.png" WidthRequest="13" HeightRequest="13" HorizontalOptions="Start" VerticalOptions="Center"></Image>
+                        <Label Text="Изменить пароль"></Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Entry x:Name="EntryPass" Placeholder="Изменить пароль" TextColor="Black" PlaceholderColor="Black" IsPassword="True" FontSize="16" VerticalOptions="Center" IsVisible="False" Completed="EntryPass_OnCompleted" Unfocused="EntryPass_OnUnfocused" BackgroundColor="White">
+                    </Entry>
+                </Grid>
+                <Label Text="Выйти из профиля">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

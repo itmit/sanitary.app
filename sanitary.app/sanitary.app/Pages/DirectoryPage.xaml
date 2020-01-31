@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewCell="clr-namespace:sanitary.app.Views;assembly=sanitary.app"
+             mc:Ignorable="d"
+             x:Class="sanitary.app.Pages.DirectoryPage"
+             Title="Каталог">
+    <ContentPage.Content>
+        <!--Страница каталога-->
+        <StackLayout Spacing="0" BackgroundColor="#f3f3f3">
+            <Frame Margin="10" CornerRadius="2" Padding="0" IsClippedToBounds="True">
+                <SearchBar Placeholder="Поиск по названию" BackgroundColor="White" FontSize="16" TextColor="Black" PlaceholderColor="Black"/>
+            </Frame>
+            <StackLayout Margin="0,0,0,5" Padding="0,5">
+                <ListView BackgroundColor="White" VerticalScrollBarVisibility="Never" SeparatorVisibility="None" SelectionMode="None">
+                    <ListView.ItemsSource>
+                        <x:String>000</x:String>
+                    </ListView.ItemsSource>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <viewCell:DirectoryViewCell/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

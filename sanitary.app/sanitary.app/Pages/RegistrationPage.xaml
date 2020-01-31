@@ -8,6 +8,7 @@
              Title = "Регистрация"
              BackgroundColor="White">
     <ContentPage.Content>
+        <!--Страница регистрации-->
         <StackLayout Margin="0,0" Spacing="0">
             <Frame Style="{StaticResource RegFrame}" Margin="15,10,15,0">
                 <Entry Placeholder="ФИО" Style="{StaticResource AuthEntry}"/>
@@ -26,7 +27,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <CheckBox Grid.Column="0" Color="#2579BF" VerticalOptions="Start"/>
+                <CheckBox Grid.Column="0" Color="#2579BF" VerticalOptions="Start" CheckedChanged="CheckBox_OnCheckedChanged"/>
                 <Label Grid.Column="1" FontSize="12">
                     <Label.FormattedText>
                         <FormattedString>
@@ -36,9 +37,12 @@
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                    </Label.GestureRecognizers>
                 </Label>
             </Grid>
-            <Button Text ="Зарегистрироваться" Clicked="Button_OnClicked" Margin="15,0,15,10"/>
+            <Button x:Name="RegButton" Text ="Зарегистрироваться" Clicked="Button_OnClicked" Margin="15,0,15,10" IsEnabled="False"/>
             <Button Text ="Войти" Clicked="Button_OnClicked1" Margin="15,0"/>
         </StackLayout>
     </ContentPage.Content>

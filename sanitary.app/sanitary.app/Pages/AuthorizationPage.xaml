@@ -7,6 +7,7 @@
              x:Class="sanitary.app.Pages.AuthorizationPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
+        <!--Страница авторизации-->
         <Grid>
             <Image Source="pic_background.png" Aspect="AspectFill" Opacity="0.7"/>
             <StackLayout Spacing="0">
@@ -17,7 +18,7 @@
                 <Frame Style="{StaticResource AuthFrame}" Margin="20,0,20,20">
                     <Entry Placeholder="Пароль" IsPassword="True" Style="{StaticResource AuthEntry}"></Entry>
                 </Frame>
-                <Button Text="Вход" Margin="20,0,20,110"></Button>
+                <Button Text="Вход" Margin="20,0,20,110" Clicked="Button_OnClicked"/>
                 <Label Text="Зарегистрироваться" TextColor="#2579BF" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
