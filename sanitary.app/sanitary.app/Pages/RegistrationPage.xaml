@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="sanitary.app.Pages.RegistrationPage"
+             Title = "Регистрация"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout Margin="0,0" Spacing="0">
+            <Frame Style="{StaticResource RegFrame}" Margin="15,10,15,0">
+                <Entry Placeholder="ФИО" Style="{StaticResource AuthEntry}"/>
+            </Frame>
+            <Frame Style="{StaticResource RegFrame}" Margin="15,10">
+                <Entry Placeholder="E-mail" Style="{StaticResource AuthEntry}"/>
+            </Frame>
+            <Frame Style="{StaticResource RegFrame}" Margin="15,0,15,10">
+                <Entry Placeholder="Пароль" IsPassword="True" Style="{StaticResource AuthEntry}"/>
+            </Frame>
+            <Frame Style="{StaticResource RegFrame}" Margin="15,0,15,20">
+                <Entry Placeholder="Повторите пароль" IsPassword="True" Style="{StaticResource AuthEntry}"/>
+            </Frame>
+            <Grid Margin="15,0,15,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" Color="#2579BF" VerticalOptions="Start"/>
+                <Label Grid.Column="1" FontSize="12">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Я даю добровольное согласие на обработку&#10;своих персональных данных и соглашаюсь с&#10;" TextColor="Black"/>
+                                <Span Text="политикой конфиденциальности." TextColor="#2579BF" TextDecorations="Underline"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+            <Button Text ="Зарегистрироваться" Clicked="Button_OnClicked" Margin="15,0,15,10"/>
+            <Button Text ="Войти" Clicked="Button_OnClicked1" Margin="15,0"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
