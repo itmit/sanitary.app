@@ -19,13 +19,13 @@
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
-                <Label Text="Иван Иванов"/>
+                <Label Text="{Binding Name}"/>
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
                                 <Span Text="E-mail: "/>
-                                <Span Text="IvanIvanov@gmail.com"/>
+                                <Span Text="{Binding Email}"/>
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
@@ -38,12 +38,12 @@
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
-                    <Entry x:Name="EntryPass" Placeholder="Изменить пароль" TextColor="Black" PlaceholderColor="Black" IsPassword="True" FontSize="16" VerticalOptions="Center" IsVisible="False" Completed="EntryPass_OnCompleted" Unfocused="EntryPass_OnUnfocused" BackgroundColor="White">
+                    <Entry x:Name="EntryPass" Placeholder="Изменить пароль" Text="{Binding Password}" TextColor="Black" PlaceholderColor="Black" IsPassword="True" FontSize="16" VerticalOptions="Center" IsVisible="False" BackgroundColor="White" Completed="EntryPass_OnCompleted" Unfocused="EntryPass_OnUnfocused">
                     </Entry>
                 </Grid>
                 <Label Text="Выйти из профиля">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1"/>
+                        <TapGestureRecognizer Command="{Binding ExitProfile}"/>
                     </Label.GestureRecognizers>
                 </Label>
             </StackLayout>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using sanitary.app.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,22 +15,12 @@ namespace sanitary.app.Pages
 		public ProfilePage()
 		{
 			InitializeComponent();
-		}
-
-		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-		{
-			EditPass.IsVisible = false;
-			EntryPass.IsVisible = true;
-		}
-
-		private void TapGestureRecognizer_OnTapped1(object sender, EventArgs e)
-		{
-			Navigation.PopAsync();
+			BindingContext = new ProfileViewModel();
 		}
 
 		private async void EntryPass_OnCompleted(object sender, EventArgs e)
 		{
-			await Application.Current.MainPage.DisplayAlert("Внимание!", "Ваш пароль успешно изменен!", "ОК");
+			await Application.Current.MainPage.DisplayAlert("Внимание", "Пароль успешно изменен!", "ОК");
 			EditPass.IsVisible = true;
 			EntryPass.IsVisible = false;
 		}
@@ -39,6 +29,12 @@ namespace sanitary.app.Pages
 		{
 			EditPass.IsVisible = true;
 			EntryPass.IsVisible = false;
+		}
+
+		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+		{
+			EditPass.IsVisible = false;
+			EntryPass.IsVisible = true;
 		}
 	}
 }
