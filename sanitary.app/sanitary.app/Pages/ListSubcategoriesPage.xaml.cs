@@ -4,24 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using sanitary.app.ViewModels;
-using sanitary.app.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace sanitary.app.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DirectoryPage : ContentPage
+    public partial class ListSubcategoriesPage : ContentPage
     {
-        public DirectoryPage()
+        public ListSubcategoriesPage()
         {
             InitializeComponent();
-			BindingContext = new DirectoryViewModel();
-		}
+			BindingContext = new ListSubcategoriesViewModel();
+        }
 
 		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
 		{
-			Navigation.PushAsync(new ListSubcategoriesPage());
+			Navigation.PushAsync(new ListPositionsPage());
 		}
 	}
 }

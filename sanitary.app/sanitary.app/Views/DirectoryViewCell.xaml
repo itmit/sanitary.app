@@ -13,9 +13,9 @@
               <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
             <Frame Grid.Column="0" IsClippedToBounds="True" CornerRadius="3" Padding="0" VerticalOptions="Center" HasShadow="True">
-                <Image Grid.Column="0" Source="pic_example_dir_512w.png" WidthRequest="40" HeightRequest="40"/>
+                <Image Grid.Column="0" Source="{Binding Image}" WidthRequest="40" HeightRequest="40"/>
             </Frame>
-            <Label x:Name="TitlePage" Grid.Column="1" Text="Унитаз" FontSize="16" TextColor="Black" VerticalOptions="Center"/>
+            <Label Grid.Column="1" Text="{Binding Title}" FontSize="16" TextColor="Black" VerticalOptions="Center"/>
             <BoxView Grid.Column="1" HeightRequest="1" BackgroundColor="#CCCCCC" VerticalOptions="EndAndExpand"/>
         </Grid>
   </ViewCell.View>

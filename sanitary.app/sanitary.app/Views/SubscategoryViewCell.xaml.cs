@@ -10,12 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace sanitary.app.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DirectoryViewCell : ViewCell
+    public partial class SubscategoryViewCell : ViewCell
     {
-        public DirectoryViewCell()
+        public SubscategoryViewCell()
         {
             InitializeComponent();
-			BindingContext = new DirectoryViewModel();
+			BindingContext = new ListSubcategoriesViewModel();
 		}
     }
 }
