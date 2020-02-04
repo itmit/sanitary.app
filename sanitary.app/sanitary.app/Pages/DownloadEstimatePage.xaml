@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewCell="clr-namespace:sanitary.app.Views;assembly=sanitary.app"
+             mc:Ignorable="d"
+             x:Class="sanitary.app.Pages.DownloadEstimatePage"
+             BackgroundColor="#f3f3f3">
+    <ContentPage.Content>
+        <!--Страница скачать сметы-->
+        <StackLayout Margin="0,10,0,0" Padding="15,0" BackgroundColor="White">
+            <ListView BackgroundColor="White" HasUnevenRows="True" VerticalScrollBarVisibility="Never" SelectionMode="None" ItemsSource="{Binding EstimatesList}">
+                <ListView.Header>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <StackLayout.Resources>
+                            <ResourceDictionary>
+                                <Style TargetType="Label">
+                                    <Setter Property="FontSize" Value="13"/>
+                                    <Setter Property="TextColor" Value="Black"/>
+                                    <Setter Property="FontAttributes" Value="Bold"/>
+                                </Style>
+                            </ResourceDictionary>
+                        </StackLayout.Resources>
+                        <Label Text="Наименование" Margin="5,0,55,0"/>
+                        <Label Text="Кол-во" Margin="0,0,30,0"/>
+                        <Label Text="Цена"/>
+                        <Label Text="Итого" HorizontalOptions="EndAndExpand" Margin="0,0,5,0"/>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <viewCell:EstimateViewCell/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackLayout Orientation="Horizontal" Margin="5,0">
+                        <Label Text="Итого" FontSize="16" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="4000" FontSize="16" TextColor="Black" FontAttributes="Bold" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                </ListView.Footer>
+            </ListView>
+            <Button Text="Скачать .PDF" Margin="0,0,0,20"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

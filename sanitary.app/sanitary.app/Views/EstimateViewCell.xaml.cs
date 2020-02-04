@@ -7,21 +7,15 @@ using sanitary.app.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace sanitary.app.Pages
+namespace sanitary.app.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ObjectPage : ContentPage
+    public partial class EstimateViewCell : ViewCell
     {
-        public ObjectPage()
+        public EstimateViewCell()
         {
             InitializeComponent();
-			BindingContext = new ObjectViewModel();
+			BindingContext = new DownloadEstimatesViewModel();
 		}
-
-		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
-		{
-
-			Navigation.PushAsync(new KnotObjectPage());
-		}
-	}
+    }
 }

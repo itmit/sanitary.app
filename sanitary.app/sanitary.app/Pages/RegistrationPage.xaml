@@ -9,41 +9,43 @@
              BackgroundColor="White">
     <ContentPage.Content>
         <!--Страница регистрации-->
-        <StackLayout Margin="0,0" Spacing="0">
-            <Frame Style="{StaticResource RegFrame}" Margin="15,10,15,0">
-                <Entry Placeholder="ФИО" Style="{StaticResource AuthEntry}"/>
-            </Frame>
-            <Frame Style="{StaticResource RegFrame}" Margin="15,10">
-                <Entry Placeholder="E-mail" Style="{StaticResource AuthEntry}"/>
-            </Frame>
-            <Frame Style="{StaticResource RegFrame}" Margin="15,0,15,10">
-                <Entry Placeholder="Пароль" IsPassword="True" Style="{StaticResource AuthEntry}"/>
-            </Frame>
-            <Frame Style="{StaticResource RegFrame}" Margin="15,0,15,20">
-                <Entry Placeholder="Повторите пароль" IsPassword="True" Style="{StaticResource AuthEntry}"/>
-            </Frame>
-            <Grid Margin="15,0,15,30">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <CheckBox Grid.Column="0" Color="#2579BF" VerticalOptions="Start" CheckedChanged="CheckBox_OnCheckedChanged"/>
-                <Label Grid.Column="1" FontSize="12">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Я даю добровольное согласие на обработку&#10;своих персональных данных и соглашаюсь с&#10;" TextColor="Black"/>
-                                <Span Text="политикой конфиденциальности." TextColor="#2579BF" TextDecorations="Underline"/>
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
-                    </Label.GestureRecognizers>
-                </Label>
-            </Grid>
-            <Button x:Name="RegButton" Text ="Зарегистрироваться" Clicked="Button_OnClicked" Margin="15,0,15,10" IsEnabled="False"/>
-            <Button Text ="Войти" Clicked="Button_OnClicked1" Margin="15,0"/>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Margin="0,0" Spacing="0">
+                <Frame Style="{StaticResource RegFrame}" Margin="15,10,15,0">
+                    <Entry Placeholder="ФИО" Style="{StaticResource AuthEntry}"/>
+                </Frame>
+                <Frame Style="{StaticResource RegFrame}" Margin="15,10">
+                    <Entry Placeholder="E-mail" Style="{StaticResource AuthEntry}"/>
+                </Frame>
+                <Frame Style="{StaticResource RegFrame}" Margin="15,0,15,10">
+                    <Entry Placeholder="Пароль" IsPassword="True" Style="{StaticResource AuthEntry}"/>
+                </Frame>
+                <Frame Style="{StaticResource RegFrame}" Margin="15,0,15,20">
+                    <Entry Placeholder="Повторите пароль" IsPassword="True" Style="{StaticResource AuthEntry}"/>
+                </Frame>
+                <Grid Margin="15,0,15,30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Grid.Column="0" Color="#2579BF" VerticalOptions="Start" CheckedChanged="CheckBox_OnCheckedChanged"/>
+                    <Label Grid.Column="1" FontSize="12">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Я даю добровольное согласие на обработку&#10;своих персональных данных и соглашаюсь с&#10;" TextColor="Black"/>
+                                    <Span Text="политикой конфиденциальности." TextColor="#2579BF" TextDecorations="Underline"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <Button x:Name="RegButton" Text ="Зарегистрироваться" Clicked="Button_OnClicked" Margin="15,0,15,10" IsEnabled="False"/>
+                <Button Text ="Войти" Clicked="Button_OnClicked1" Margin="15,0"/>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

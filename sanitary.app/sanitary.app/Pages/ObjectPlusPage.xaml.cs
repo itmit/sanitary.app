@@ -16,5 +16,10 @@ namespace sanitary.app.Pages
         {
             InitializeComponent();
         }
-    }
+
+		private void ImageButton_OnClicked(object sender, EventArgs e)
+		{
+			SaveButton.IsEnabled = true;
+		}
+	}
 }
