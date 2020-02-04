@@ -23,7 +23,7 @@
                         </ResourceDictionary>
                     </StackLayout.Resources>
                     <Label Text="Заглушки (110) PPRC Pro Aqua" FontAttributes="Bold" Margin="0,0,0,20"></Label>
-                    <Grid>
+                    <Grid ColumnSpacing="70">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -32,12 +32,12 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Text="Количество"/>
-                        <Label Grid.Column="0" Grid.Row="1" Text="Цена"/>
-                        <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Spacing="5" HorizontalOptions="EndAndExpand" Margin="0,0,80,0" VerticalOptions="Center">
-                            <ImageButton Source="ic_plus_4x.png" WidthRequest="20" HeightRequest="20" Clicked="ImageButton_OnClicked"/>
-                            <Label x:Name="ValueLabel" WidthRequest="25" HorizontalTextAlignment="End"></Label>
-                            <ImageButton Source="ic_minus_4x.png" WidthRequest="20" HeightRequest="20" Clicked="ImageButton_OnClicked1"/>
+                        <Label Grid.Column="0" Grid.Row="0" Text="Количество" WidthRequest="120"/>
+                        <Label Grid.Column="0" Grid.Row="1" Text="Цена" WidthRequest="120"/>
+                        <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Spacing="5" VerticalOptions="Center">
+                            <ImageButton Source="ic_plus_4x.png" WidthRequest="20" HeightRequest="20" Clicked="ImageButton_OnClicked" BackgroundColor="Transparent"/>
+                            <Label x:Name="ValueLabel" HorizontalTextAlignment="End"/>
+                            <ImageButton Source="ic_minus_4x.png" WidthRequest="20" HeightRequest="20" Clicked="ImageButton_OnClicked1" BackgroundColor="Transparent"/>
                         </StackLayout>
                         <Frame Grid.Column="1" Grid.Row="1" Padding="10,5" WidthRequest="135" CornerRadius="3" BorderColor="#D7D7D7" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
                             <Label x:Name="PriceLabel"/>
@@ -47,14 +47,14 @@
                     <Frame Padding="10" CornerRadius="3" BorderColor="#D7D7D7" Margin="0,0,0,25">
                         <Editor Placeholder="Описание, модель и т.д." PlaceholderColor="Black" HeightRequest="45" FontSize="12" TextColor="Black"></Editor>
                     </Frame>
-                    <Picker Title="Добавить в узел" TitleColor="Black" FontAttributes="Bold" FontSize="16" Margin="0,0,0,20">
+                    <Picker Title="Добавить в узел" TitleColor="Black" FontAttributes="Bold" FontSize="16" Margin="0,0,0,20" SelectedIndexChanged="Picker_OnSelectedIndexChanged">
                         <Picker.Items>
                             <x:String>Кабинет директора, объект 01</x:String>
                             <x:String>Кабинет директора, объект 02</x:String>
                             <x:String>Кабинет программиста, объект 02</x:String>
                         </Picker.Items>
                     </Picker>
-                    <Button Text="Добавить"></Button>
+                    <Button x:Name="AddButton" Text="Добавить" IsEnabled="False" Clicked="AddButton_OnClicked"></Button>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

@@ -15,7 +15,7 @@
 		/// <summary>
 		/// Возвращает количество
 		/// </summary>
-		public int Quantity
+		public string Quantity
 		{
 			get;
 			set;
@@ -24,7 +24,7 @@
 		/// <summary>
 		/// Возвращает цену
 		/// </summary>
-		public int Price
+		public string Price
 		{
 			get;
 			set;
@@ -33,7 +33,7 @@
 		/// <summary>
 		/// Возвращает итого
 		/// </summary>
-		public int Total
+		public string Total
 		{
 			get;
 			set;

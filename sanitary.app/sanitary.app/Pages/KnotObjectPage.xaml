@@ -7,10 +7,50 @@
              x:Class="sanitary.app.Pages.KnotObjectPage"
              BackgroundColor="#f3f3f3">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White" Margin="0,10,0,0">
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <!--Узлы объекта-->
+        <StackLayout BackgroundColor="White" Margin="0,10,0,0" Padding="15,0,15,20">
+            <ListView BackgroundColor="White" HasUnevenRows="True" VerticalScrollBarVisibility="Never" SelectionMode="None" SeparatorVisibility="None" ItemsSource="{Binding ListKnot}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Title}" Margin="5,25,0,10" TextColor="Black" FontSize="16" FontAttributes="Bold"/>
+                                <BoxView HeightRequest="1" BackgroundColor="#CCCCCC"/>
+                                <ListView BackgroundColor="White" HasUnevenRows="True" VerticalScrollBarVisibility="Never" SelectionMode="None" Margin="5,0,0,0" HeightRequest="125">
+                                    <ListView.ItemsSource>
+                                        <x:String>00</x:String>
+                                    </ListView.ItemsSource>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                                    <Label Text="Заглушка (110) PPRC Pro Aqua" WidthRequest="145" TextColor="Black" FontSize="16" Margin="5,0,0,0" VerticalOptions="Start"/>
+                                                    <Label TextColor="Black" FontSize="16" Margin="5,0,30,0" VerticalOptions="Start">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <FormattedString.Spans>
+                                                                    <Span Text="1"/>
+                                                                    <Span Text=" шт"/>
+                                                                </FormattedString.Spans>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <Label Text="1000" TextColor="Black" FontSize="16" Margin="5,0,30,0" VerticalOptions="Start"/>
+                                                    <Label Text="1000" TextColor="Black" FontSize="16" VerticalOptions="Start"/>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.Footer>
+                                        <Button Text="Скопировать узел в..." CornerRadius="10" FontSize="8" WidthRequest="160" HeightRequest="30" HorizontalOptions="EndAndExpand" Margin="0,10,0,0"/>
+                                    </ListView.Footer>
+                                </ListView>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Посмотреть смету" VerticalOptions="EndAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

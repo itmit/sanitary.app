@@ -20,6 +20,13 @@ namespace sanitary.app.Pages
 		private void ImageButton_OnClicked(object sender, EventArgs e)
 		{
 			SaveButton.IsEnabled = true;
+			StackVisible.IsVisible = true;
+		}
+
+		private async void ImageButton_OnClicked1(object sender, EventArgs e)
+		{
+			await Navigation.PushAsync(new DirectoryPage());
+			StackObject.IsVisible = true;
 		}
 	}
 }

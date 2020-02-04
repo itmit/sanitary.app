@@ -47,5 +47,15 @@ namespace sanitary.app.Pages
 			ValueLabel.Text = _number.ToString();
 			PriceLabel.Text = _price.ToString();
 		}
+
+		private void Picker_OnSelectedIndexChanged(object sender, EventArgs e)
+		{
+			AddButton.IsEnabled = true;
+		}
+
+		private void AddButton_OnClicked(object sender, EventArgs e)
+		{
+			Navigation.PopToRootAsync();
+		}
 	}
 }

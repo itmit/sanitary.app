@@ -17,16 +17,16 @@ namespace sanitary.app.ViewModels
 				new Estimate
 				{
 					Description = "Заглушка, (110) PPRC Pro Aqua",
-					Price = 1000,
-					Quantity = 3,
-					Total = 3000
+					Price = "1000",
+					Quantity = "3",
+					Total = "3000"
 				},
 				new Estimate
 				{
 					Description = "Заглушка, (110) PPRC Pro Aqua",
-					Price = 1000,
-					Quantity = 1,
-					Total = 1000
+					Price = "1000",
+					Quantity = "1",
+					Total = "1000"
 				}
 			};
 		}

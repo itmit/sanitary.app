@@ -9,18 +9,40 @@
              BackgroundColor="#f3f3f3">
     <ContentPage.Content>
         <!--Страница + Объект-->
-        <StackLayout BackgroundColor="White" Padding="15" Margin="0,10,0,0" Spacing="0">
-            <Frame IsClippedToBounds="True" Padding="15,5,0,5" CornerRadius="7" BorderColor="#D7D7D7" Margin="0,0,0,25">
-                <Entry Placeholder="Название объекта" FontSize="18" PlaceholderColor="Black" TextColor="Black" FontAttributes="Bold"/>
-            </Frame>
-            <StackLayout Spacing="0">
-                <StackLayout Orientation="Horizontal" Margin="5,0,5,10">
-                    <Label Text="Новый узел" FontSize="16" TextColor="Black"/>
-                    <ImageButton Source="ic_plus_type2_4x.png" WidthRequest="12" HeightRequest="12" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Clicked="ImageButton_OnClicked"/>
+        <ScrollView>
+            <StackLayout BackgroundColor="White" Padding="15" Margin="0,10,0,0" Spacing="0">
+
+                <Frame IsClippedToBounds="True" Padding="15,5,0,5" CornerRadius="7" BorderColor="#D7D7D7" Margin="0,0,0,25">
+                    <Entry Placeholder="Название объекта" FontSize="18" PlaceholderColor="Black" TextColor="Black" FontAttributes="Bold"/>
+                </Frame>
+
+                <StackLayout x:Name="StackVisible" Margin="20,0,0,25" IsVisible="False">
+                    <Entry Placeholder="Введите название узла" PlaceholderColor="Black" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                    <StackLayout x:Name="StackObject" Margin="40,0,0,25" IsVisible="False">
+                        <StackLayout Orientation="Horizontal" Margin="5,0,5,10">
+                            <Label Text="Заглушка (110) PPRC Pro Aqua" FontSize="16" TextColor="Black"/>
+                            <Label Text="1" VerticalOptions="Center" HorizontalOptions="EndAndExpand" FontSize="16" TextColor="Black"/>
+                        </StackLayout>
+                        <BoxView HeightRequest="1" BackgroundColor="#CCCCCC"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="5,0,5,10">
+                        <Label Text="Добавить материалы" FontSize="16" TextColor="Black"/>
+                        <ImageButton Source="ic_plus_type2_4x.png" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Clicked="ImageButton_OnClicked1"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#CCCCCC"/>
                 </StackLayout>
-                <BoxView HeightRequest="1" BackgroundColor="#CCCCCC"/>
+
+                <StackLayout Spacing="0">
+                    <StackLayout Orientation="Horizontal" Margin="5,0,5,10">
+                        <Label Text="Новый узел" FontSize="16" TextColor="Black"/>
+                        <ImageButton Source="ic_plus_type2_4x.png" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Clicked="ImageButton_OnClicked"/>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="#CCCCCC"/>
+                </StackLayout>
+
+                <Button x:Name="SaveButton" Text="Сохранить" VerticalOptions="EndAndExpand" Margin="0,0,0,5" IsEnabled="False"/>
+
             </StackLayout>
-            <Button x:Name="SaveButton" Text="Сохранить" VerticalOptions="EndAndExpand" Margin="0,0,0,5" IsEnabled="False"/>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
