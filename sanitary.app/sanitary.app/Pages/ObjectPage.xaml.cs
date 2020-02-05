@@ -15,7 +15,6 @@ namespace sanitary.app.Pages
         public ObjectPage()
         {
             InitializeComponent();
-			BindingContext = new ObjectViewModel();
 		}
 
 		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)

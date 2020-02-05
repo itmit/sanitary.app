@@ -16,7 +16,6 @@ namespace sanitary.app.Pages
         public DirectoryPage()
         {
             InitializeComponent();
-			BindingContext = new DirectoryViewModel();
 		}
 
 		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)

@@ -15,7 +15,6 @@ namespace sanitary.app.Pages
         public EstimatesPage()
         {
             InitializeComponent();
-			BindingContext = new EstimatesViewModel();
 		}
 
 		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)

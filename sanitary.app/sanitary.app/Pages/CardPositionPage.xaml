@@ -18,11 +18,11 @@
                         <ResourceDictionary>
                             <Style TargetType="Label">
                                 <Setter Property="TextColor" Value="Black"/>
-                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="FontSize" Value="Body"/>
                             </Style>
                         </ResourceDictionary>
                     </StackLayout.Resources>
-                    <Label Text="Заглушки (110) PPRC Pro Aqua" FontAttributes="Bold" Margin="0,0,0,20"></Label>
+                    <Label Text="Заглушки (110) PPRC Pro Aqua" Margin="0,0,0,20" FontFamily="GilroySemiBold.ttf#GilroySemiBold"></Label>
                     <Grid ColumnSpacing="70">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -45,9 +45,9 @@
                     </Grid>
                     <Label Text="Заметки" Margin="0,0,0,10"/>
                     <Frame Padding="10" CornerRadius="3" BorderColor="#D7D7D7" Margin="0,0,0,25">
-                        <Editor Placeholder="Описание, модель и т.д." PlaceholderColor="Black" HeightRequest="45" FontSize="12" TextColor="Black"></Editor>
+                        <Editor Placeholder="Описание, модель и т.д." PlaceholderColor="Black" HeightRequest="45" FontSize="Caption" FontFamily="GilroyRegular.ttf#GilroyRegular" TextColor="Black"/>
                     </Frame>
-                    <Picker Title="Добавить в узел" TitleColor="Black" FontAttributes="Bold" FontSize="16" Margin="0,0,0,20" SelectedIndexChanged="Picker_OnSelectedIndexChanged">
+                    <Picker Title="Добавить в узел" TitleColor="Black" FontFamily="GilroySemiBold.ttf#GilroySemiBold" FontSize="Body" Margin="0,0,0,20" SelectedIndexChanged="Picker_OnSelectedIndexChanged">
                         <Picker.Items>
                             <x:String>Кабинет директора, объект 01</x:String>
                             <x:String>Кабинет директора, объект 02</x:String>

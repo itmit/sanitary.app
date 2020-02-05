@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:binding="clr-namespace:sanitary.app.ViewModels;assembly=sanitary.app"
              mc:Ignorable="d"
              x:Class="sanitary.app.Views.DirectoryViewCell">
-  <ViewCell.View>
+    <ViewCell.View>
       <!--Ячейка для списка каталога-->
       <Grid Margin="15,5" ColumnSpacing="10">
           <Grid.ColumnDefinitions>

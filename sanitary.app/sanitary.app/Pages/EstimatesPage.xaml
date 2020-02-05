@@ -3,10 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:binding="clr-namespace:sanitary.app.ViewModels;assembly=sanitary.app"
              mc:Ignorable="d"
              x:Class="sanitary.app.Pages.EstimatesPage"
              Title="Сметы"
              BackgroundColor="#f3f3f3">
+
+    <ContentPage.BindingContext>
+            <binding:EstimatesViewModel/>
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <!--Страница сметы-->
         <StackLayout Margin="0,10,0,0" Padding="15,0" BackgroundColor="White">
@@ -14,7 +20,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Label Text="{Binding Title}" FontSize="16" FontAttributes="Bold" TextColor="Black" Margin="5,25,5,10" VerticalOptions="Center"/>
+                            <Label Text="{Binding Title}" FontSize="Body" FontFamily="GilroySemiBold.ttf#GilroySemiBold" TextColor="Black" Margin="5,25,5,10" VerticalOptions="Center"/>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

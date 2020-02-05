@@ -19,7 +19,7 @@
                     <Entry Placeholder="Пароль" IsPassword="True" Style="{StaticResource AuthEntry}"></Entry>
                 </Frame>
                 <Button Text="Вход" Margin="20,0,20,110" Clicked="Button_OnClicked"/>
-                <Label Text="Зарегистрироваться" TextColor="#2579BF" HorizontalOptions="Center" FontSize="16" FontAttributes="Bold">
+                <Label Text="Зарегистрироваться" TextColor="#2579BF" HorizontalOptions="Center" FontSize="Body" FontFamily="GilroySemiBold.ttf#GilroySemiBold">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
                     </Label.GestureRecognizers>

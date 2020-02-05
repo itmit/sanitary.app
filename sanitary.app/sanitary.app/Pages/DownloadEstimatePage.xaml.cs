@@ -15,7 +15,6 @@ namespace sanitary.app.Pages
 		public DownloadEstimatePage()
 		{
 			InitializeComponent();
-			BindingContext = new DownloadEstimatesViewModel();
 		}
 	}
 }

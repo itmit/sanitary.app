@@ -15,7 +15,6 @@ namespace sanitary.app.Pages
         public KnotObjectPage()
         {
             InitializeComponent();
-			BindingContext = new KnotObjectViewModel();
 		}
     }
 }

@@ -4,7 +4,7 @@
 	{
 		#region Prop
 		/// <summary>
-		/// Возвращает наименование сметы
+		/// Возвращает наименование
 		/// </summary>
 		public string Description
 		{
