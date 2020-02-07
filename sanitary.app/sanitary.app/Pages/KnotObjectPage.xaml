@@ -26,9 +26,15 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
-                                                <StackLayout Orientation="Horizontal" Spacing="0">
-                                                    <Label Text="{Binding Description}" WidthRequest="145" TextColor="Black" FontSize="Body" Margin="5,0,0,0" VerticalOptions="Start"/>
-                                                    <Label TextColor="Black" FontSize="Body" Margin="5,0,30,0" VerticalOptions="Start">
+                                                <Grid ColumnSpacing="20">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Grid.Column="0" Text="{Binding Description}" WidthRequest="145" TextColor="Black" FontSize="Default" Margin="5,0,0,0" VerticalOptions="Start" HorizontalTextAlignment="Start"/>
+                                                    <Label Grid.Column="1" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center">
                                                         <Label.FormattedText>
                                                             <FormattedString>
                                                                 <FormattedString.Spans>
@@ -38,9 +44,9 @@
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>
-                                                    <Label Text="{Binding Price}" TextColor="Black" FontSize="Body" Margin="5,0,30,0" VerticalOptions="Start"/>
-                                                    <Label Text="{Binding Total}" TextColor="Black" FontSize="Body" VerticalOptions="Start"/>
-                                                </StackLayout>
+                                                    <Label Grid.Column="2" Text="{Binding Price}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center"/>
+                                                    <Label Grid.Column="3" Text="{Binding Total}" TextColor="Black" Margin="0,0,5,0" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center"/>
+                                                </Grid>
                                             </ViewCell>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>

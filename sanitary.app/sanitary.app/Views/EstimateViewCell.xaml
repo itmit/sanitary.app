@@ -8,8 +8,8 @@
   <ViewCell.View>
       <!--Ячейка для списка на странице скачать смету-->
         <StackLayout Orientation="Horizontal" Spacing="0">
-            <Label Text="{Binding Description}" WidthRequest="145" TextColor="Black" FontSize="16" Margin="5,0,0,0" VerticalOptions="Start"/>
-            <Label TextColor="Black" FontSize="16" Margin="5,0,30,0" VerticalOptions="Start">
+            <Label Text="{Binding Description}" WidthRequest="145" TextColor="Black" FontSize="Default" Margin="5,0,0,0" VerticalOptions="Start"/>
+            <Label TextColor="Black" FontSize="Default" Margin="5,0,35,0" VerticalOptions="Start">
                 <Label.FormattedText>
                     <FormattedString>
                         <FormattedString.Spans>
@@ -19,8 +19,8 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Label Text="{Binding Price}" TextColor="Black" FontSize="16" Margin="5,0,30,0" VerticalOptions="Start"/>
-            <Label Text="{Binding Total}" TextColor="Black" FontSize="16" VerticalOptions="Start"/>
+            <Label Text="{Binding Price}" TextColor="Black" FontSize="Default" Margin="5,0,35,0" VerticalOptions="Start"/>
+            <Label Text="{Binding Total}" TextColor="Black" FontSize="Default" VerticalOptions="Start"/>
       </StackLayout>
   </ViewCell.View>
 </ViewCell>
