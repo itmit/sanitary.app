@@ -32,7 +32,7 @@
                     <BoxView HeightRequest="1" BackgroundColor="#CCCCCC"/>
                 </StackLayout>
 
-                <StackLayout Spacing="0">
+                <StackLayout Spacing="0" Margin="0,0,0,20">
                     <StackLayout Orientation="Horizontal" Margin="5,0,5,10">
                         <Label Text="Новый узел" FontSize="Body" TextColor="Black"/>
                         <ImageButton Source="ic_plus_type2_4x.png" WidthRequest="15" HeightRequest="15" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Clicked="ImageButton_OnClicked"/>

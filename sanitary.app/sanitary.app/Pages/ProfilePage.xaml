@@ -9,44 +9,47 @@
              BackgroundColor="#f3f3f3">
     <ContentPage.Content>
         <!--Страница профиля-->
-        <Frame BackgroundColor="White" Margin="0,10" Padding="20,30" VerticalOptions="Start">
-            <StackLayout Spacing="15">
-                <StackLayout.Resources>
-                    <ResourceDictionary>
-                        <Style TargetType ="Label">
-                            <Setter Property="FontSize" Value="16"/>
-                            <Setter Property="TextColor" Value="Black"/>
-                        </Style>
-                    </ResourceDictionary>
-                </StackLayout.Resources>
-                <Label Text="{Binding Name}"/>
-                <Label>
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="E-mail: "/>
-                                <Span Text="{Binding Email}"/>
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Grid>
-                    <StackLayout x:Name="EditPass" Orientation="Horizontal" Spacing="10" IsVisible="True">
-                        <Image Source="ic_edit_pass.png" WidthRequest="13" HeightRequest="13" HorizontalOptions="Start" VerticalOptions="Center"></Image>
-                        <Label Text="Изменить пароль"></Label>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                    <Entry x:Name="EntryPass" Placeholder="Изменить пароль" Text="{Binding Password}" TextColor="Black" PlaceholderColor="Black" IsPassword="True" FontSize="16" VerticalOptions="Center" IsVisible="False" BackgroundColor="White" Completed="EntryPass_OnCompleted" Unfocused="EntryPass_OnUnfocused">
-                    </Entry>
-                </Grid>
-                <Label Text="Выйти из профиля">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ExitProfile}"/>
-                    </Label.GestureRecognizers>
-                </Label>
-            </StackLayout>
-        </Frame>
+        <ScrollView>
+
+            <Frame BackgroundColor="White" Margin="0,10" Padding="20,30" VerticalOptions="Start">
+                <StackLayout Spacing="15">
+                    <StackLayout.Resources>
+                        <ResourceDictionary>
+                            <Style TargetType ="Label">
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="TextColor" Value="Black"/>
+                            </Style>
+                        </ResourceDictionary>
+                    </StackLayout.Resources>
+                    <Label Text="{Binding Name}"/>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="E-mail: "/>
+                                    <Span Text="{Binding Email}"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Grid>
+                        <StackLayout x:Name="EditPass" Orientation="Horizontal" Spacing="10" IsVisible="True">
+                            <Image Source="ic_edit_pass.png" WidthRequest="13" HeightRequest="13" HorizontalOptions="Start" VerticalOptions="Center"></Image>
+                            <Label Text="Изменить пароль"></Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <Entry x:Name="EntryPass" Placeholder="Изменить пароль" Text="{Binding Password}" TextColor="Black" PlaceholderColor="Black" IsPassword="True" FontSize="16" VerticalOptions="Center" IsVisible="False" BackgroundColor="White" Completed="EntryPass_OnCompleted" Unfocused="EntryPass_OnUnfocused">
+                        </Entry>
+                    </Grid>
+                    <Label Text="Выйти из профиля">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ExitProfile}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Frame>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

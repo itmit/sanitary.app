@@ -3,28 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customEntry="clr-namespace:sanitary.app.Controls;assembly=sanitary.app"
              mc:Ignorable="d"
              x:Class="sanitary.app.Pages.AuthorizationPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <!--Страница авторизации-->
-        <Grid>
-            <Image Source="pic_background.png" Aspect="AspectFill" Opacity="0.7"/>
-            <StackLayout Spacing="0">
-                <Image Source="pic_logo.png" HeightRequest="75" WidthRequest="75" Margin="0,85,0,45" HorizontalOptions="Center"/>
-                <Frame Style="{StaticResource AuthFrame}" Margin="20,0,20,10">
-                    <Entry Placeholder="E-mail" Style="{StaticResource AuthEntry}"></Entry>
-                </Frame>
-                <Frame Style="{StaticResource AuthFrame}" Margin="20,0,20,20">
-                    <Entry Placeholder="Пароль" IsPassword="True" Style="{StaticResource AuthEntry}"></Entry>
-                </Frame>
-                <Button Text="Вход" Margin="20,0,20,110" Clicked="Button_OnClicked"/>
-                <Label Text="Зарегистрироваться" TextColor="#2579BF" HorizontalOptions="Center" FontSize="Body" FontFamily="GilroySemiBold.ttf#GilroySemiBold">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
-                    </Label.GestureRecognizers>
-                </Label>
-            </StackLayout>
-        </Grid>
+        <ScrollView>
+            <Grid>
+                <Image Source="pic_background.png" Aspect="AspectFill" Opacity="0.7"/>
+                <StackLayout Spacing="0">
+                    <Image Source="pic_logo.png" HeightRequest="75" WidthRequest="75" Margin="0,85,0,45" HorizontalOptions="Center"/>
+                    <Frame Style="{StaticResource AuthFrame}" Margin="20,0,20,10">
+                        <customEntry:AuthEntry Placeholder="E-mail" Style="{StaticResource AuthEntry}"/>
+                    </Frame>
+                    <Frame Style="{StaticResource AuthFrame}" Margin="20,0,20,20">
+                        <customEntry:AuthEntry Placeholder="Пароль" IsPassword="True" Style="{StaticResource AuthEntry}"></customEntry:AuthEntry>
+                    </Frame>
+                    <Button Text="Вход" Margin="20,0,20,110" Clicked="Button_OnClicked"/>
+                    <Label Text="Зарегистрироваться" TextColor="#2579BF" HorizontalOptions="Center" FontSize="Body" FontFamily="GilroySemiBold.ttf#GilroySemiBold">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

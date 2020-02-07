@@ -10,7 +10,7 @@ namespace sanitary.app.Droid
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-			Thread.Sleep(1000);
+			Thread.Sleep(2000);
 			StartActivity(typeof(MainActivity));
 		}
 	}

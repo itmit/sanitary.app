@@ -7,20 +7,17 @@
              x:Class="sanitary.app.Views.EstimateViewCell">
   <ViewCell.View>
       <!--Ячейка для списка на странице скачать смету-->
-        <StackLayout Orientation="Horizontal" Spacing="0">
-            <Label Text="{Binding Description}" WidthRequest="145" TextColor="Black" FontSize="Default" Margin="5,0,0,0" VerticalOptions="Start"/>
-            <Label TextColor="Black" FontSize="Default" Margin="5,0,35,0" VerticalOptions="Start">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <FormattedString.Spans>
-                            <Span Text="{Binding Quantity}"/>
-                            <Span Text=" шт"/>
-                        </FormattedString.Spans>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Label Text="{Binding Price}" TextColor="Black" FontSize="Default" Margin="5,0,35,0" VerticalOptions="Start"/>
-            <Label Text="{Binding Total}" TextColor="Black" FontSize="Default" VerticalOptions="Start"/>
-      </StackLayout>
-  </ViewCell.View>
+      <Grid Margin="5,0">
+          <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="2*"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Label Grid.Column="0" Text="{Binding Description}" WidthRequest="145" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Start"/>
+          <Label Grid.Column="1" Text="{Binding Quantity}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center"/>
+          <Label Grid.Column="2" Text="{Binding Price}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center"/>
+          <Label Grid.Column="3" Text="{Binding Total}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="End"/>
+      </Grid>
+    </ViewCell.View>
 </ViewCell>

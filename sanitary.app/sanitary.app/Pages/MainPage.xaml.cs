@@ -21,5 +21,10 @@ namespace sanitary.app.Pages
 		{
 			Navigation.PushAsync(new ProfilePage());
 		}
+
+		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+		{
+			
+		}
 	}
 }

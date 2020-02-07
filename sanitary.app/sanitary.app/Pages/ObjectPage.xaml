@@ -20,28 +20,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Margin="5,25,5,10" VerticalOptions="Center">
-                                <Label TextColor="Black">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <FormattedString.Spans>
-                                                <Span Text="Объект " FontSize="Body" FontFamily="GilroySemiBold.ttf#GilroySemiBold"/>
-                                                <Span Text="{Binding NumberObject}" FontSize="Body" FontFamily="GilroySemiBold.ttf#GilroySemiBold"/>
-                                                <Span Text=" от " FontSize="Caption" FontFamily="GilroySemiBold.ttf#GilroySemiBold"/>
-                                                <Span Text="{Binding Date}" FontSize="Caption" FontFamily="GilroySemiBold.ttf#GilroySemiBold"/>
-                                            </FormattedString.Spans>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label TextColor="Black" HorizontalOptions="EndAndExpand">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <FormattedString.Spans>
-                                                <Span Text="{Binding Knot}" FontSize="Caption"></Span>
-                                                <Span Text=" Узла" FontSize="Caption"></Span>
-                                            </FormattedString.Spans>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
+                                <Label Text="{Binding NameObject}" TextColor="Black" FontFamily="GilroySemiBold.ttf#GilroySemiBold" FontSize="Body"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

@@ -5,11 +5,4 @@
         android:src="@drawable/pic_background"
         android:tileMode="disabled"/>
   </item>
-  <item>
-    <bitmap
-        android:src="@drawable/pic_logo_1x"
-        android:gravity ="center">
-       <scale/>
-    </bitmap>
-  </item>
 </layer-list>

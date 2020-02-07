@@ -4,27 +4,9 @@
 	{
 		#region Prop
 		/// <summary>
-		/// Возвращает номер объекта
+		/// Возвращает название объекта
 		/// </summary>
-		public string NumberObject
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Возвращает дату
-		/// </summary>
-		public string Date
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Возвращает количество узлов
-		/// </summary>
-		public string Knot
+		public string NameObject
 		{
 			get;
 			set;

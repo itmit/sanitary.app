@@ -15,15 +15,11 @@ namespace sanitary.app.ViewModels
 			{
 				new ListObject
 				{
-					NumberObject = "01",
-					Date = "20.01.2020",
-					Knot = "3"
+					NameObject = "Название А"
 				},
 				new ListObject
-				{
-					NumberObject = "02",
-					Date = "21.02.2020",
-					Knot = "3"
+				{ 
+					NameObject = "Название Б"
 				}
 			};
 		}

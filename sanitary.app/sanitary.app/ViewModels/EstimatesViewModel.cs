@@ -15,15 +15,15 @@ namespace sanitary.app.ViewModels
 			{
 				new Directory
 				{
-					Title = "Объект Офис ООО “Итмит”",
+					Title = "Название А",
 				},
 				new Directory
 				{
-					Title = "Объект Офис Пожарные",
+					Title = "Название Б",
 				},
 				new Directory
 				{
-					Title = "Объект Офис ООО Первые",
+					Title = "Название В",
 				}
 			};
 		}
