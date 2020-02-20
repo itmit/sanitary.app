@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using PropertyChanged;
+using Realms;
 
 namespace sanitary.app.Models
 {
-    public class User
+    public class User : RealmObject
     {
 		#region MyRegion
 		/// <summary>
