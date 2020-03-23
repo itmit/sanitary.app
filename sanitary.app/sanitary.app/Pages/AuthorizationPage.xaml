@@ -15,15 +15,15 @@
                 <StackLayout Spacing="0">
                     <Image Source="pic_logo.png" HeightRequest="75" WidthRequest="75" Margin="0,85,0,45" HorizontalOptions="Center"/>
                     <Frame Style="{StaticResource AuthFrame}" Margin="20,0,20,10">
-                        <customEntry:AuthEntry Placeholder="E-mail" Style="{StaticResource AuthEntry}"/>
+                        <customEntry:AuthEntry Placeholder="E-mail" Style="{StaticResource AuthEntry}" Text="{Binding EmailEntry}"/>
                     </Frame>
                     <Frame Style="{StaticResource AuthFrame}" Margin="20,0,20,20">
-                        <customEntry:AuthEntry Placeholder="Пароль" IsPassword="True" Style="{StaticResource AuthEntry}"></customEntry:AuthEntry>
+                        <customEntry:AuthEntry Placeholder="Пароль" IsPassword="True" Style="{StaticResource AuthEntry}" Text="{Binding PasswordEntry}"></customEntry:AuthEntry>
                     </Frame>
-                    <Button Text="Вход" Margin="20,0,20,110" Clicked="Button_OnClicked"/>
+                    <Button Text="Вход" Margin="20,0,20,110" Command="{Binding OnLoginButtonClicked}"/>
                     <Label Text="Зарегистрироваться" TextColor="#2579BF" HorizontalOptions="Center" FontSize="Body" FontFamily="GilroySemiBold.ttf#GilroySemiBold">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                            <TapGestureRecognizer Command="{Binding OpenRegisterationCommand}" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
                 </StackLayout>

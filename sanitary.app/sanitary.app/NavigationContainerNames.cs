@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace sanitary.app
+﻿namespace sanitary.app
 {
     class NavigationContainerNames
     {

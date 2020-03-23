@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using sanitary.app.Models;
-using sanitary.app.Pages;
 using Xamarin.Forms;
 
 namespace sanitary.app.ViewModels

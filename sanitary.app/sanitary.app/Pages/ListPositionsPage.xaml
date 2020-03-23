@@ -10,7 +10,13 @@
     <ContentPage.Content>
         <!--Список позиций-->
         <StackLayout Margin="0,10" Padding="0,5">
-            <ListView BackgroundColor="White" HasUnevenRows="True" VerticalScrollBarVisibility="Never" SeparatorVisibility="None" SelectionMode="None" ItemsSource="{Binding DirectoryList}" ItemTapped="ListView_OnItemTapped">
+            <ListView 
+                BackgroundColor="White" 
+                HasUnevenRows="True" 
+                VerticalScrollBarVisibility="Never" 
+                SeparatorVisibility="None" 
+                ItemsSource="{Binding Directories}" 
+                SelectedItem="{Binding SelectedPosition, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <views:DirectoryViewCell/>

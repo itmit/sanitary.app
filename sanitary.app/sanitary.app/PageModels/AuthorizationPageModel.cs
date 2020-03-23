@@ -79,7 +79,7 @@ namespace sanitary.app.PageModels
         async Task<bool> AreCredentialsCorrectAsync()
         {
             //return user.Name == Constants.Username && user.PhoneNumber == Constants.Password;
-            if (string.IsNullOrWhiteSpace(EmailEntry) | EmailEntry.Length <= 7 |
+            if (string.IsNullOrWhiteSpace(EmailEntry) |
                 string.IsNullOrWhiteSpace(PasswordEntry) | PasswordEntry.Length < 6)
             {
                 await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка", "Неверно указан email или пароль", "OK");
@@ -124,8 +124,9 @@ namespace sanitary.app.PageModels
 
                     User user = new User
                     {
-                        Name = userObj["data"]["client_info"]["name"].ToString(),
-                        Email = userObj["data"]["client_info"]["phone"].ToString(),
+                        Name = userObj["data"]["client"]["name"].ToString(),
+                        Email = userObj["data"]["client"]["email"].ToString(),
+                        Token = userObj["data"]["access_token"].ToString(),
                     };
 
                     Realm.Write(() =>
@@ -137,30 +138,9 @@ namespace sanitary.app.PageModels
                 }
                 else
                 {
-                    string errorMessage = "";
                     string errorInfo = await response.Content.ReadAsStringAsync();
-                    JObject errorObj = JObject.Parse(errorInfo);
-
-                    if (errorObj.ContainsKey("error"))
-                    {
-                        errorMessage = (string)errorObj["error"];
-                    }
-                    else if (errorObj.ContainsKey("errors"))
-                    {
-                        JToken errors = errorObj["errors"];
-
-                        if (errors["email"] != null)
-                        {
-                            errorMessage = (string)(errors["email"].First);
-                        }
-                        else if (errors["password"] != null)
-                        {
-                            errorMessage = (string)(errors["password"].First);
-                        }
-
-                    }
-
-                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка", errorMessage, "OK");
+                    await ParseErrorMessageAsync(errorInfo);
+                    
                     return false;
                 }
 
@@ -172,6 +152,33 @@ namespace sanitary.app.PageModels
             }
 
             return true;
+        }
+
+        private async Task ParseErrorMessageAsync(string errorInfo)
+        {
+            string errorMessage = "";
+            JObject errorObj = JObject.Parse(errorInfo);
+
+            if (errorObj.ContainsKey("error"))
+            {
+                errorMessage = (string)errorObj["error"];
+            }
+            else if (errorObj.ContainsKey("errors"))
+            {
+                JToken errors = errorObj["errors"];
+
+                if (errors["email"] != null)
+                {
+                    errorMessage = (string)(errors["email"].First);
+                }
+                else if (errors["password"] != null)
+                {
+                    errorMessage = (string)(errors["password"].First);
+                }
+
+            }
+
+            await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка", errorMessage, "OK");
         }
     }
 }

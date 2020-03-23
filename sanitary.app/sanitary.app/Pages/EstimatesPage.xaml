@@ -8,19 +8,25 @@
              x:Class="sanitary.app.Pages.EstimatesPage"
              Title="Сметы"
              BackgroundColor="#f3f3f3">
-
-    <ContentPage.BindingContext>
-            <binding:EstimatesViewModel/>
-    </ContentPage.BindingContext>
-
     <ContentPage.Content>
         <!--Страница сметы-->
-        <StackLayout Margin="0,10,0,0" Padding="15,0" BackgroundColor="White">
-            <ListView BackgroundColor="White" HasUnevenRows="True" VerticalScrollBarVisibility="Never" SelectionMode="None" ItemsSource="{Binding EstimatesList}" ItemTapped="ListView_OnItemTapped" SeparatorColor="#CCCCCC">
+        <StackLayout BackgroundColor="White" Margin="0,10,0,0">
+            <ListView 
+                HasUnevenRows="True" 
+                BackgroundColor="White" 
+                Margin="15,0" 
+                VerticalScrollBarVisibility="Never" 
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding UpdateListCommand}"
+                IsRefreshing="{Binding IsRefreshing}"
+                ItemsSource="{Binding UserObjects}" 
+                SelectedItem="{Binding SelectedObject, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Label Text="{Binding Title}" FontSize="Body" FontFamily="GilroySemiBold.ttf#GilroySemiBold" TextColor="Black" Margin="5,25,5,10" VerticalOptions="Center"/>
+                            <StackLayout Orientation="Horizontal" Margin="5,25,5,10" VerticalOptions="Center">
+                                <Label Text="{Binding Name}" TextColor="Black" FontFamily="GilroySemiBold.ttf#GilroySemiBold" FontSize="Body"/>
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

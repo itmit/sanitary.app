@@ -1,5 +1,4 @@
 ﻿using FreshMvvm;
-using PropertyChanged;
 using System.Windows.Input;
 using Realms;
 using Newtonsoft.Json.Linq;
@@ -95,7 +94,7 @@ namespace sanitary.app.PageModels
             }
 
             // TODO:
-            // add Email, Organization, Adress validation
+            // add Email, Organization validation
 
             bool result = await SendUserInfoAsync(user);
 
@@ -138,28 +137,7 @@ namespace sanitary.app.PageModels
                 {
                     string errorMessage = "";
                     string errorInfo = await response.Content.ReadAsStringAsync();
-                    JObject errorObj = JObject.Parse(errorInfo);
-
-                    if (errorObj.ContainsKey("error"))
-                    {
-                        errorMessage = (string)errorObj["error"];
-                    }
-                    else if (errorObj.ContainsKey("errors"))
-                    {
-                        JToken errors = errorObj["errors"];
-
-                        if (errors["email"] != null)
-                        {
-                            errorMessage = (string)(errors["email"].First);
-                        }
-                        else if (errors["password"] != null)
-                        {
-                            errorMessage = (string)(errors["password"].First);
-                        }
-
-                    }
-
-                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка", errorMessage, "OK");
+                    await ParseErrorMessageAsync(errorInfo);
                     return false;
                 }
 
@@ -171,6 +149,33 @@ namespace sanitary.app.PageModels
             }
 
             return true;
+        }
+
+        private async Task ParseErrorMessageAsync(string errorInfo)
+        {
+            string errorMessage = "";
+            JObject errorObj = JObject.Parse(errorInfo);
+
+            if (errorObj.ContainsKey("error"))
+            {
+                errorMessage = (string)errorObj["error"];
+            }
+            else if (errorObj.ContainsKey("errors"))
+            {
+                JToken errors = errorObj["errors"];
+
+                if (errors["email"] != null)
+                {
+                    errorMessage = (string)(errors["email"].First);
+                }
+                else if (errors["password"] != null)
+                {
+                    errorMessage = (string)(errors["password"].First);
+                }
+
+            }
+
+            await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка", errorMessage, "OK");
         }
 
         private string ClearNumber(string phoneNumber)

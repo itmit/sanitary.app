@@ -9,7 +9,7 @@
              mc:Ignorable="d"
              x:Class="sanitary.app.Views.MenuTabbedView"
              NavigationPage.HasNavigationBar="False"
-             BarBackgroundColor="#0A192E">
+             BarBackgroundColor="#686bb1">
     <!--Нижнее меню с закладками-->
 
     <TabbedPage.SelectedTabColor>

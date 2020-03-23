@@ -9,7 +9,7 @@
         <!--Глобальные стили-->
         <ResourceDictionary>
             <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="#0A192E"/>
+                <Setter Property="BarBackgroundColor" Value="#686bb1"/>
             </Style>
             <Style x:Key="AuthEntry" TargetType = "Entry">
                 <Setter Property="PlaceholderColor" Value="#000000"/>
@@ -39,6 +39,13 @@
                 <Setter Property="BorderColor" Value="#D7D7D7"/>
                 <Setter Property="HeightRequest" Value="60"/>
                 <Setter Property="CornerRadius" Value="7"/>
+            </Style>
+            <Style x:Key="CopyButton" TargetType="Button">
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="FontSize" Value="8"/>
+                <Setter Property="WidthRequest" Value="160"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="Margin" Value="0,10"/>
             </Style>
             <Style TargetType="Label">
                 <Setter Property="FontFamily" Value="GilroyRegular.ttf#GilroyRegular"/>

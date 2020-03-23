@@ -1,5 +1,4 @@
-﻿using PropertyChanged;
-using Realms;
+﻿using Realms;
 
 namespace sanitary.app.Models
 {
@@ -13,7 +12,7 @@ namespace sanitary.app.Models
 		{
 			get;
 			set;
-		} = "Иван Иванов";
+		}
 
 		/// <summary>
 		/// Возвращает почту пользователя
@@ -22,7 +21,7 @@ namespace sanitary.app.Models
 		{
 			get;
 			set;
-		} = "IvanIvanov@gmail.com";
+		}
 
 		/// <summary>
 		/// Возвращае пароль пользователя
@@ -32,6 +31,7 @@ namespace sanitary.app.Models
 			get;
 			set;
 		}
-		#endregion
-	}
+        public string Token { get; internal set; }
+        #endregion
+    }
 }

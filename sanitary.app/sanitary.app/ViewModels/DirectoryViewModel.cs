@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using sanitary.app.Models;
-using Xamarin.Forms;
 
 namespace sanitary.app.ViewModels
 {
-	public class DirectoryViewModel
+    public class DirectoryViewModel
 	{
 		#region Fields
 		private List<Directory> _directoryList;

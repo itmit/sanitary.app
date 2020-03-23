@@ -13,16 +13,16 @@
         <ScrollView>
             <StackLayout Margin="0,0" Spacing="0">
                 <Frame Style="{StaticResource RegFrame}" Margin="15,10,15,0">
-                    <customEntry:AuthEntry Placeholder="ФИО" Style="{StaticResource AuthEntry}" />
+                    <customEntry:AuthEntry Placeholder="ФИО" Style="{StaticResource AuthEntry}" Text="{Binding FullName}" />
                 </Frame>
                 <Frame Style="{StaticResource RegFrame}" Margin="15,10">
-                    <customEntry:AuthEntry Placeholder="E-mail" Style="{StaticResource AuthEntry}"/>
+                    <customEntry:AuthEntry Placeholder="E-mail" Style="{StaticResource AuthEntry}" Text="{Binding Email}"/>
                 </Frame>
                 <Frame Style="{StaticResource RegFrame}" Margin="15,0,15,10">
-                    <customEntry:AuthEntry Placeholder="Пароль" IsPassword="True" Style="{StaticResource AuthEntry}"/>
+                    <customEntry:AuthEntry Placeholder="Пароль" IsPassword="True" Style="{StaticResource AuthEntry}" Text="{Binding Password}"/>
                 </Frame>
                 <Frame Style="{StaticResource RegFrame}" Margin="15,0,15,20">
-                    <customEntry:AuthEntry Placeholder="Повторите пароль" IsPassword="True" Style="{StaticResource AuthEntry}"/>
+                    <customEntry:AuthEntry Placeholder="Повторите пароль" IsPassword="True" Style="{StaticResource AuthEntry}" Text="{Binding RepeatPassword}"/>
                 </Frame>
                 <Grid Margin="15,0,15,30">
                     <Grid.ColumnDefinitions>
@@ -44,8 +44,8 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Grid>
-                <Button x:Name="RegButton" Text ="Зарегистрироваться" Clicked="Button_OnClicked" Margin="15,0,15,10" IsEnabled="False"/>
-                <Button Text ="Войти" Clicked="Button_OnClicked1" Margin="15,0"/>
+                <Button x:Name="RegButton" Text="Зарегистрироваться" Margin="15,0,15,10" IsEnabled="False" Command="{Binding OnRegisterButtonClicked}"/>
+                <Button Text="Войти" Margin="15,0" Command="{Binding LogIn}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

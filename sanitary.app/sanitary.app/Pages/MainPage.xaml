@@ -12,18 +12,18 @@
             <Grid>
                 <Image Source="pic_background.png" Aspect="AspectFill" Opacity="0.7"/>
                 <StackLayout Margin="15,0" Spacing="0">
-                    <Button Text="Профиль" Margin="0,70,0,20" Clicked="Button_OnClicked"/>
-                    <Button Text="Каталог"/>
-                    <Button Text="Сметы" Margin="0,20"/>
-                    <Button Text="Объекты"/>
-                    <Button Text="+ Объект" Margin="0,20"/>
+                    <Button Text="Профиль" Margin="0,70,0,20" Command="{Binding MenuTappedCommand}" CommandParameter="Profile"/>
+                    <Button Text="Каталог"  Command="{Binding MenuTappedCommand}" CommandParameter="Catalog"/>
+                    <Button Text="Сметы" Margin="0,20" Command="{Binding MenuTappedCommand}" CommandParameter="Estimates"/>
+                    <Button Text="Объекты" Command="{Binding MenuTappedCommand}" CommandParameter="Object"/>
+                    <Button Text="+ Объект" Margin="0,20" Command="{Binding MenuTappedCommand}" CommandParameter="Add object"/>
                     <Frame CornerRadius="14" BackgroundColor="#2579BF" HeightRequest="50" Padding="0" IsClippedToBounds="True">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                             <Image Source="ic_telegram_4x.png" WidthRequest="12" HeightRequest="12" VerticalOptions="Center"/>
                             <Label Text="СанТех в Telegram" TextColor="White" FontSize="Body" VerticalOptions="Center" FontFamily="GilroySemiBold.ttf#GilroySemiBold"/>
                         </StackLayout>
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                            <TapGestureRecognizer Command="{Binding MenuTappedCommand}" CommandParameter="Open Telegram"/>
                         </Frame.GestureRecognizers>
                     </Frame>
                 </StackLayout>

@@ -8,19 +8,28 @@
              x:Class="sanitary.app.Pages.ObjectPage"
              Title="Объекты"
              BackgroundColor="#f3f3f3">
-
-    <ContentPage.BindingContext>
-        <binding:ObjectViewModel/>
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <!--Страница объекты-->
         <StackLayout BackgroundColor="White" Margin="0,10,0,0">
-            <ListView HasUnevenRows="True" BackgroundColor="White" Margin="15,0" SelectionMode="None" VerticalScrollBarVisibility="Never" ItemsSource="{Binding ListObject}" ItemTapped="ListView_OnItemTapped">
+            <ListView 
+                x:Name="ObjectList"
+                HasUnevenRows="True" 
+                BackgroundColor="White" 
+                Margin="15,0"
+                VerticalScrollBarVisibility="Never" 
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding UpdateListCommand}"
+                IsRefreshing="{Binding IsRefreshing}"
+                ItemsSource="{Binding UserObjects}" 
+                SelectedItem="{Binding SelectedObject, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Удалить" Command="{Binding BindingContext.DeleteObjectCommand, Source={x:Reference ObjectList}}" CommandParameter="{Binding .}"/>
+                            </ViewCell.ContextActions>
                             <StackLayout Orientation="Horizontal" Margin="5,25,5,10" VerticalOptions="Center">
-                                <Label Text="{Binding NameObject}" TextColor="Black" FontFamily="GilroySemiBold.ttf#GilroySemiBold" FontSize="Body"/>
+                                <Label Text="{Binding Name}" TextColor="Black" FontFamily="GilroySemiBold.ttf#GilroySemiBold" FontSize="Body"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

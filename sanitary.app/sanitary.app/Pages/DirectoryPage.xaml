@@ -20,7 +20,13 @@
                 <SearchBar Placeholder="Поиск" BackgroundColor="White" FontSize="Body" FontFamily="GilroyRegular.ttf#GilroyRegular" TextColor="Black" PlaceholderColor="Black"/>
             </Frame>
             <StackLayout Margin="0,0,0,5" Padding="0,5">
-                <ListView BackgroundColor="White" VerticalScrollBarVisibility="Never" HasUnevenRows="True" SeparatorVisibility="None" SelectionMode="None" ItemsSource="{Binding DirectoryList}" ItemTapped="ListView_OnItemTapped">
+                <ListView 
+                    BackgroundColor="White" 
+                    VerticalScrollBarVisibility="Never" 
+                    HasUnevenRows="True" 
+                    SeparatorVisibility="None" 
+                    ItemsSource="{Binding Directories}"
+                    SelectedItem="{Binding SelectedDirectory, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <viewCell:DirectoryViewCell/>

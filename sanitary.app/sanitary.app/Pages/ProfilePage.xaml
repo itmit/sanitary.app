@@ -21,13 +21,13 @@
                             </Style>
                         </ResourceDictionary>
                     </StackLayout.Resources>
-                    <Label Text="{Binding Name}"/>
+                    <Label Text="{Binding CurrentUser.Name}"/>
                     <Label>
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
                                     <Span Text="E-mail: "/>
-                                    <Span Text="{Binding Email}"/>
+                                    <Span Text="{Binding UserEmail}"/>
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>

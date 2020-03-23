@@ -12,7 +12,7 @@
                 <Image Source="pic_background.png" Aspect="AspectFill"/>
                 <StackLayout Spacing="0">
                     <Frame IsClippedToBounds="True" Padding="0" CornerRadius="10" HorizontalOptions="Center" Margin="0,15">
-                        <Image Source="pic_example13_dir_512w.png" HeightRequest="200" WidthRequest="200"/>
+                        <Image Source="{Binding PostionImage}" HeightRequest="200" WidthRequest="200"/>
                     </Frame>
                     <StackLayout BackgroundColor="White" Padding="15,20" Spacing="0" VerticalOptions="EndAndExpand">
                         <StackLayout.Resources>
@@ -23,7 +23,7 @@
                                 </Style>
                             </ResourceDictionary>
                         </StackLayout.Resources>
-                        <Label Text="Заглушки (110) PPRC Pro Aqua" Margin="0,0,0,20" FontFamily="GilroySemiBold.ttf#GilroySemiBold"/>
+                        <Label Text="{Binding PostionName}" Margin="0,0,0,20" FontFamily="GilroySemiBold.ttf#GilroySemiBold"/>
                         <Grid ColumnSpacing="70">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -35,27 +35,50 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Grid.Row="0" Text="Количество" WidthRequest="120"/>
                             <Label Grid.Column="0" Grid.Row="1" Text="Цена" WidthRequest="120"/>
-                            <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Spacing="5" VerticalOptions="Center">
-                                <ImageButton Source="ic_plus_4x.png" WidthRequest="20" HeightRequest="20" Clicked="ImageButton_OnClicked" BackgroundColor="Transparent"/>
-                                <Label x:Name="ValueLabel" HorizontalTextAlignment="End"/>
+                            <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
                                 <ImageButton Source="ic_minus_4x.png" WidthRequest="20" HeightRequest="20" Clicked="ImageButton_OnClicked1" BackgroundColor="Transparent"/>
+                                <Entry x:Name="ValueLabel" Text="{Binding QuantityEntry}" WidthRequest="40" Keyboard="Numeric" HorizontalTextAlignment="End"/>
+                                <ImageButton Source="ic_plus_4x.png" WidthRequest="20" HeightRequest="20" Clicked="ImageButton_OnClicked" BackgroundColor="Transparent"/>
                             </StackLayout>
                             <Frame Grid.Column="1" Grid.Row="1" Padding="10,5" WidthRequest="135" CornerRadius="3" BorderColor="#D7D7D7" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
-                                <Label x:Name="PriceLabel"/>
+                                <Entry x:Name="PriceLabel" Text="{Binding PriceEntry}" Keyboard="Numeric" />
                             </Frame>
                         </Grid>
                         <Label Text="Заметки" Margin="0,0,0,10"/>
                         <Frame Padding="10" CornerRadius="3" BorderColor="#D7D7D7" Margin="0,0,0,25">
-                            <Editor Placeholder="Описание, модель и т.д." PlaceholderColor="Black" HeightRequest="45" FontSize="Caption" FontFamily="GilroyRegular.ttf#GilroyRegular" TextColor="Black"/>
+                            <Editor 
+                                Text="{Binding UserDescription}"
+                                Placeholder="Описание, модель и т.д." 
+                                PlaceholderColor="Black" 
+                                HeightRequest="45" 
+                                FontSize="Caption" 
+                                FontFamily="GilroyRegular.ttf#GilroyRegular" 
+                                TextColor="Black"/>
                         </Frame>
-                        <Picker Title="Добавить в узел" TitleColor="Black" FontFamily="GilroySemiBold.ttf#GilroySemiBold" FontSize="Body" Margin="0,0,0,20" SelectedIndexChanged="Picker_OnSelectedIndexChanged">
-                            <Picker.Items>
-                                <x:String>Кабинет директора, объект 01</x:String>
-                                <x:String>Кабинет директора, объект 02</x:String>
-                                <x:String>Кабинет программиста, объект 02</x:String>
-                            </Picker.Items>
+                        <Picker 
+                            Title="Добавить в объект" 
+                            TitleColor="Black" 
+                            FontFamily="GilroySemiBold.ttf#GilroySemiBold" 
+                            FontSize="Body" 
+                            Margin="0,0,0,20" 
+                            ItemDisplayBinding="{Binding Name}"
+                            ItemsSource="{Binding UserObjects}"
+                            SelectedItem="{Binding SelectedObject}"
+                            SelectedIndexChanged="Picker_OnSelectedIndexChanged">
                         </Picker>
-                        <Button x:Name="AddButton" Text="Добавить" IsEnabled="False" Clicked="AddButton_OnClicked"></Button>
+                        <Picker 
+                            Title="Добавить в узел" 
+                            TitleColor="Black" 
+                            FontFamily="GilroySemiBold.ttf#GilroySemiBold" 
+                            FontSize="Body" 
+                            Margin="0,0,0,20" 
+                            IsVisible="{Binding IsNodesVisible}"
+                            ItemDisplayBinding="{Binding Name}"
+                            ItemsSource="{Binding ObjectNodes}"
+                            SelectedItem="{Binding SelectedNode}"
+                            SelectedIndexChanged="Picker_OnSelectedIndexChanged">
+                        </Picker>
+                        <Button x:Name="AddButton" Text="Добавить" IsEnabled="False" Command="{Binding AddMaterialCommand}"></Button>
                     </StackLayout>
                 </StackLayout>
             </Grid>

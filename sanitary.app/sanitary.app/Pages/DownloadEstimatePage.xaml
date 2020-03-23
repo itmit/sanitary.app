@@ -16,7 +16,15 @@
     <ContentPage.Content>
         <!--Страница скачать сметы-->
         <StackLayout Margin="0,10,0,0" Padding="15,0" BackgroundColor="White">
-            <ListView BackgroundColor="White" HasUnevenRows="True" VerticalScrollBarVisibility="Never" SelectionMode="None" ItemsSource="{Binding EstimatesList}">
+            <ListView 
+                BackgroundColor="White" 
+                HasUnevenRows="True" 
+                VerticalScrollBarVisibility="Never" 
+                SelectionMode="None" 
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding UpdateListCommand}"
+                IsRefreshing="{Binding IsRefreshing}"
+                ItemsSource="{Binding ObjectMaterials}">
                 <ListView.Header>
                     <Grid Margin="5,0">
                         <Grid.Resources>
@@ -51,12 +59,12 @@
                 <ListView.Footer>
                     <StackLayout Orientation="Horizontal" Margin="5,0">
                         <Label Text="Итого" FontSize="Body" TextColor="Black" FontFamily="GilroySemiBold.ttf#GilroySemiBold"/>
-                        <Label Text="4000" FontSize="Body" TextColor="Black" FontFamily="GilroySemiBold.ttf#GilroySemiBold" HorizontalOptions="EndAndExpand"/>
+                        <Label Text="{Binding ItemsSummary}" FontSize="Body" TextColor="Black" FontFamily="GilroySemiBold.ttf#GilroySemiBold" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
                 </ListView.Footer>
             </ListView>
 
-            <Button Text="Скачать .PDF" Margin="0,0,0,20"/>
+            <Button Text="Скачать .PDF" Margin="0,0,0,20" Command="{Binding DownloadPDFCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
