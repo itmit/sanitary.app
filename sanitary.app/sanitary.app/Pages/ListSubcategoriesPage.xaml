@@ -8,7 +8,6 @@
              x:Class="sanitary.app.Pages.ListSubcategoriesPage"
              BackgroundColor="#f3f3f3">
     <ContentPage.Content>
-        <!--Список подкатегорий-->
         <StackLayout Margin="0,10" Padding="0,5">
             <ListView 
                 BackgroundColor="White" 

@@ -12,7 +12,7 @@ namespace sanitary.app.Services
 {
     public class ObjectStorageService : IObjectStorageService
     {
-        HttpClient client;
+        readonly HttpClient client;
 
         private bool AuthenticationHeaderIsSet { get; set; }
 
@@ -20,8 +20,10 @@ namespace sanitary.app.Services
 
         public ObjectStorageService()
         {
-            client = new HttpClient();
-            client.MaxResponseContentBufferSize = 209715200; // 200 MB
+            client = new HttpClient
+            {
+                MaxResponseContentBufferSize = 209715200 // 200 MB
+            };
             client.DefaultRequestHeaders.Add("Accept", "application/json");
 
             SetAuthenticationHeader();
@@ -61,14 +63,13 @@ namespace sanitary.app.Services
                 else
                 {
                     string errorInfo = await response.Content.ReadAsStringAsync();
-                    string errorMessage = await ParseErrorMessageAsync(errorInfo);
+                    string errorMessage = ParseErrorMessage(errorInfo);
 
                     Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => { await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorMessage, "OK"); });
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
-                System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return Object;
@@ -103,9 +104,8 @@ namespace sanitary.app.Services
                     Objects = JsonConvert.DeserializeObject<List<Object>>(catalogArr["data"].ToString());
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
-                System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return Objects;
@@ -140,9 +140,8 @@ namespace sanitary.app.Services
                     Nodes = JsonConvert.DeserializeObject<List<Node>>(catalogArr["data"].ToString());
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
-                System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return Nodes;
@@ -177,9 +176,8 @@ namespace sanitary.app.Services
                     Materials = JsonConvert.DeserializeObject<List<Material>>(catalogArr["data"].ToString());
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
-                System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return Materials;
@@ -214,9 +212,8 @@ namespace sanitary.app.Services
                     Nodes = JsonConvert.DeserializeObject<List<Node>>(catalogArr["data"].ToString());
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
-                System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return Nodes;
@@ -251,9 +248,8 @@ namespace sanitary.app.Services
                     FilePath = resultArr["data"].First.ToString();
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
-                System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return FilePath;
@@ -293,7 +289,7 @@ namespace sanitary.app.Services
                 else
                 {
                     string errorInfo = await response.Content.ReadAsStringAsync();
-                    string errorMessage = await ParseErrorMessageAsync(errorInfo);
+                    string errorMessage = ParseErrorMessage(errorInfo);
 
                     Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => { await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorMessage, "OK"); });
 
@@ -308,7 +304,6 @@ namespace sanitary.app.Services
                 System.Console.WriteLine("Stack Trace:\n   {0}\n", ex.StackTrace);
 
                 await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.GetType().Name + "\n" + ex.Message + "\n" + ex.StackTrace, "OK");
-                //await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка отправки данных", e.InnerException.Message, "OK");
                 return false;
             }
         }
@@ -351,7 +346,7 @@ namespace sanitary.app.Services
                 else
                 {
                     string errorInfo = await response.Content.ReadAsStringAsync();
-                    string errorMessage = await ParseErrorMessageAsync(errorInfo);
+                    string errorMessage = ParseErrorMessage(errorInfo);
 
                     Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => { await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorMessage, "OK"); });
 
@@ -361,11 +356,6 @@ namespace sanitary.app.Services
             }
             catch (HttpRequestException e)
             {
-                //System.Console.WriteLine("An exception ({0}) occurred.", ex.GetType().Name);
-                //System.Console.WriteLine("Message:\n   {0}\n", ex.Message);
-                //System.Console.WriteLine("Stack Trace:\n   {0}\n", ex.StackTrace);
-
-                //await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка отправки данных", ex.GetType().Name + "\n" + ex.Message + "\n" + ex.StackTrace, "OK");
                 await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", e.InnerException.Message, "OK");
                 return false;
             }
@@ -388,12 +378,14 @@ namespace sanitary.app.Services
 
             try
             {
-                JObject jmessage = new JObject();
-                jmessage.Add("uuid_item", MaterialToAdd.uuid);
-                jmessage.Add("uuid_node", NodeId);
-                jmessage.Add("count", MaterialToAdd.Quantity);
-                jmessage.Add("amount", MaterialToAdd.Price);
-                jmessage.Add("description", MaterialToAdd.Description);
+                JObject jmessage = new JObject
+                {
+                    { "uuid_item", MaterialToAdd.uuid },
+                    { "uuid_node", NodeId },
+                    { "count", MaterialToAdd.Quantity },
+                    { "amount", MaterialToAdd.Price },
+                    { "description", MaterialToAdd.Description }
+                };
                 string json = jmessage.ToString();
                 StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
@@ -408,7 +400,6 @@ namespace sanitary.app.Services
                 else
                 {
                     string errorInfo = await response.Content.ReadAsStringAsync();
-                    System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", errorInfo);
                     return false;
                 }
 
@@ -416,7 +407,6 @@ namespace sanitary.app.Services
             catch (System.Exception ex)
             {
                 await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
-                System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return false;
@@ -439,9 +429,11 @@ namespace sanitary.app.Services
 
             try
             {
-                JObject jmessage = new JObject();
-                jmessage.Add("uuid", nodeUuid);
-                jmessage.Add("uuid_to", objectUuid);
+                JObject jmessage = new JObject
+                {
+                    { "uuid", nodeUuid },
+                    { "uuid_to", objectUuid }
+                };
                 string json = jmessage.ToString();
                 StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
@@ -457,7 +449,6 @@ namespace sanitary.app.Services
                 {
                     string errorInfo = await response.Content.ReadAsStringAsync();
                     await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorInfo, "OK");
-                    System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", errorInfo);
                     return;
                 }
 
@@ -465,7 +456,6 @@ namespace sanitary.app.Services
             catch (System.Exception ex)
             {
                 await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
-                System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
         }
         #endregion
@@ -507,7 +497,6 @@ namespace sanitary.app.Services
             catch (System.Exception ex)
             {
                 await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
-                System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return false;
@@ -549,7 +538,6 @@ namespace sanitary.app.Services
             catch (System.Exception ex)
             {
                 await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
-                System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return false;
@@ -591,7 +579,6 @@ namespace sanitary.app.Services
             catch (System.Exception ex)
             {
                 await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
-                System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return false;
@@ -599,20 +586,13 @@ namespace sanitary.app.Services
         #endregion
 
         #region Utility private methods
-        private bool IsJson(string input)
-        {
-            input = input.Trim();
-            return input.StartsWith("{") && input.EndsWith("}")
-                   || input.StartsWith("[") && input.EndsWith("]");
-        }
-
         private bool IsThereInternet()
         {
             // TODO: if no internet, show alert
             return Plugin.Connectivity.CrossConnectivity.Current.IsConnected;
         }
 
-        private async Task<string> ParseErrorMessageAsync(string errorInfo)
+        private string ParseErrorMessage(string errorInfo)
         {
             string errorMessage = "";
             JObject errorObj = JObject.Parse(errorInfo);

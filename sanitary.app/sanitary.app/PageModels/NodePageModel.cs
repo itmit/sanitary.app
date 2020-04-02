@@ -3,17 +3,15 @@ using PropertyChanged;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using sanitary.app.Models;
-using System.Collections.Generic;
 using System.Windows.Input;
 using System.Linq;
-using System;
 
 namespace sanitary.app.PageModels
 {
     [AddINotifyPropertyChangedInterface]
     public class NodePageModel : FreshBasePageModel
     {
-        private Services.IObjectStorageService _objectStorage;
+        private readonly Services.IObjectStorageService _objectStorage;
         private Node CurrentNode;
         public ObservableCollection<Material> MaterialList { get; set; }
 

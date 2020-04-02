@@ -3,13 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewCell="clr-namespace:sanitary.app.Views;assembly=sanitary.app"
              xmlns:converters="clr-namespace:sanitary.app.Converters"
              mc:Ignorable="d"
              x:Class="sanitary.app.Pages.DownloadEstimatePage"
              BackgroundColor="#f3f3f3">
     <ContentPage.Content>
-        <!--Страница скачать сметы-->
         <StackLayout Margin="0,10,0,0" Padding="15,0" BackgroundColor="White">
             <ListView 
                 x:Name="MaterialsListView"
@@ -40,8 +38,6 @@
                         <Label Grid.Column="0" Text="№ п/п" HorizontalTextAlignment="Start"/>
                         <Label Grid.Column="1" Text="Наименование" HorizontalTextAlignment="Start"/>
                         <Label Grid.Column="2" Text="Кол-во" HorizontalTextAlignment="End"/>
-                        <!--<Label Grid.Column="2" Text="Цена"/>
-                        <Label Grid.Column="3" Text="Итого" HorizontalTextAlignment="End"/>-->
                     </Grid>
                 </ListView.Header>
 
@@ -78,7 +74,6 @@
                                     HorizontalTextAlignment="End"/>
                             </Grid>
                         </ViewCell>
-                        <!--<viewCell:EstimateViewCell/>-->
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

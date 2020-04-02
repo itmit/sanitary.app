@@ -13,6 +13,7 @@
                 <ImageButton 
                     Grid.Row="0"
                     Grid.Column="1"
+                    Aspect="Fill"
                     Source="delete_48.png" 
                     WidthRequest="20" 
                     HeightRequest="20" 

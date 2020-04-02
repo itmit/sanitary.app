@@ -5,9 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="sanitary.app.Views.SubscategoryViewCell">
-  <ViewCell.View>
-      <!--Ячейка для списка подкатегорий-->
-      <Grid Margin="15,5" ColumnSpacing="10">
+    <ViewCell.View>
+        <Grid Margin="15,5" ColumnSpacing="10">
           <Grid.ColumnDefinitions>
               <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>

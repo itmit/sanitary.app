@@ -1,7 +1,5 @@
 ﻿using System;
 using Xamarin.Forms;
-using System.IO;
-using System.Net;
 using System.ComponentModel;
 using sanitary.app.Services;
 using sanitary.app.Droid.Services;
@@ -32,18 +30,10 @@ namespace sanitary.app.Droid.Services
 
             try
             {
-                //Android.Net.Uri contentUri = Android.Net.Uri.Parse(url);
-                //DownloadManager.Request currentRequest = new DownloadManager.Request(contentUri);
-                //currentRequest.SetDestinationInExternalPublicDir(Android.OS.Environment.DirectoryDownloads, "smeta_" + DateTime.Now.ToString("dd_MM_yy") + ".pdf"); // Path.GetFileName(url)
-                //currentRequest.AllowScanningByMediaScanner();
-                //currentRequest.SetNotificationVisibility(DownloadVisibility.VisibleNotifyCompleted);
-                //DownloadManager dm = (DownloadManager)Android.App.Application.Context.GetSystemService(Android.Content.Context.DownloadService);
-
-                //dm.Enqueue(currentRequest);
-
                 string fileName = "smeta_" + DateTime.Now.ToString("dd_MM_yy") + ".pdf";
 
                 Request request = new Request(Android.Net.Uri.Parse(url));
+
                 // Store to common external storage:
                 request.SetDestinationInExternalPublicDir(Android.OS.Environment.DirectoryDownloads, fileName);
                 request.SetNotificationVisibility(DownloadVisibility.VisibleNotifyCompleted);
@@ -58,19 +48,6 @@ namespace sanitary.app.Droid.Services
                 if (OnFileDownloaded != null)
                     OnFileDownloaded.Invoke(this, new DownloadEventArgs(false));
             }
-
-            //try
-            //{
-            //    WebClient webClient = new WebClient();
-            //    webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
-            //    string pathToNewFile = Path.Combine(pathToNewFolder, Path.GetFileName(url));
-            //    webClient.DownloadFileAsync(new Uri(url), pathToNewFile);
-            //}
-            //catch (Exception)
-            //{
-            //    if (OnFileDownloaded != null)
-            //        OnFileDownloaded.Invoke(this, new DownloadEventArgs(false));
-            //}
         }
 
         private void RequestPermission()

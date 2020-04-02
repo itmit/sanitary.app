@@ -7,7 +7,6 @@
              x:Class="sanitary.app.Pages.PrivatePolicyPage"
              Title="Регистрация">
     <ContentPage.Content>
-        <!--Страница политики конфедициальности-->
         <ScrollView Margin="20,15">
             <StackLayout>
                 <Label Text="Политика конфиденциальности" FontSize="16" TextColor="Black"/>

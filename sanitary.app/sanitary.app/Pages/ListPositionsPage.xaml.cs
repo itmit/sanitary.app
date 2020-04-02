@@ -10,10 +10,5 @@ namespace sanitary.app.Pages
         {
             InitializeComponent();
         }
-
-		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
-		{
-			Navigation.PushAsync(new CardPositionPage());
-		}
 	}
 }

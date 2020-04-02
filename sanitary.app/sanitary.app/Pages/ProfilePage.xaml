@@ -8,7 +8,6 @@
              Title="Профиль"
              BackgroundColor="#f3f3f3">
     <ContentPage.Content>
-        <!--Страница профиля-->
         <ScrollView>
 
             <Frame BackgroundColor="White" Margin="0,10" Padding="20,30" VerticalOptions="Start">

@@ -9,6 +9,7 @@ namespace sanitary.app.Pages
     public partial class CardPositionPage : ContentPage
 	{
 		private int _number = 1;
+
         public CardPositionPage()
         {
             InitializeComponent();

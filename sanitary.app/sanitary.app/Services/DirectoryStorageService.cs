@@ -7,14 +7,13 @@ using System.Net.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
-using System.Diagnostics;
 using Newtonsoft.Json.Linq;
 
 namespace sanitary.app.Services
 {
     public class DirectoryStorageService : IDirectoryStorageService
     {
-        HttpClient client;
+        readonly HttpClient client;
 
         public Realm Realm { get { return Realm.GetInstance(); } }
 
@@ -25,8 +24,10 @@ namespace sanitary.app.Services
 
         public DirectoryStorageService()
         {
-            client = new HttpClient();
-            client.MaxResponseContentBufferSize = 209715200; // 200 MB
+            client = new HttpClient
+            {
+                MaxResponseContentBufferSize = 209715200 // 200 MB
+            };
             client.DefaultRequestHeaders.Add("Accept", "application/json");
 
             SetAuthenticationHeader();
@@ -37,10 +38,6 @@ namespace sanitary.app.Services
             return Realm.Find<Directory>(id);
         }
 
-        /// <summary>
-        /// Gets all dialogs
-        /// </summary>
-        /// <returns>All dialogs</returns>
         public async Task<List<Directory>> GetAllDirectoriesAsync()
         {
             string restMethod = "catalog";
@@ -65,9 +62,8 @@ namespace sanitary.app.Services
                     Directories = JsonConvert.DeserializeObject<List<Directory>>(catalogArr["data"].ToString());
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return Directories;
@@ -83,15 +79,14 @@ namespace sanitary.app.Services
             string restMethod = "catalog/category";
             Directories = new List<Directory>();
 
-            Realm realm = Realm.GetInstance();
-            User user = realm.All<User>().Last();
-
             Uri uri = new Uri(string.Format(Constants.RestUrl, restMethod));
 
             try
             {
-                JObject jmessage = new JObject();
-                jmessage.Add("uuid", directoryUuid);
+                JObject jmessage = new JObject
+                {
+                    { "uuid", directoryUuid }
+                };
                 string json = jmessage.ToString();
                 StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
@@ -105,9 +100,8 @@ namespace sanitary.app.Services
                     Directories = JsonConvert.DeserializeObject<List<Directory>>(catalogArr["data"].ToString());
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return Directories;
@@ -122,15 +116,14 @@ namespace sanitary.app.Services
             string restMethod = "catalog/category/item";
             Directories = new List<Directory>();
 
-            Realm realm = Realm.GetInstance();
-            User user = realm.All<User>().Last();
-
             Uri uri = new Uri(string.Format(Constants.RestUrl, restMethod));
 
             try
             {
-                JObject jmessage = new JObject();
-                jmessage.Add("uuid", directoryUuid);
+                JObject jmessage = new JObject
+                {
+                    { "uuid", directoryUuid }
+                };
                 string json = jmessage.ToString();
                 StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
@@ -144,9 +137,8 @@ namespace sanitary.app.Services
                     Directories = JsonConvert.DeserializeObject<List<Directory>>(catalogArr["data"].ToString());
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return Directories;
@@ -160,9 +152,6 @@ namespace sanitary.app.Services
             }
             string restMethod = "catalog/category/item/" + positionUuid;
             Position = new Position();
-
-            Realm realm = Realm.GetInstance();
-            User user = realm.All<User>().Last();
 
             Uri uri = new Uri(string.Format(Constants.RestUrl, restMethod));
 
@@ -178,9 +167,8 @@ namespace sanitary.app.Services
                     Position = JsonConvert.DeserializeObject<Position>(catalogArr["data"].ToString());
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return Position;
@@ -200,8 +188,10 @@ namespace sanitary.app.Services
 
             try
             {
-                JObject jmessage = new JObject();
-                jmessage.Add("name", searchText);
+                JObject jmessage = new JObject
+                {
+                    { "name", searchText }
+                };
                 string json = jmessage.ToString();
                 StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
@@ -215,19 +205,13 @@ namespace sanitary.app.Services
                     Directories = JsonConvert.DeserializeObject<List<Directory>>(catalogArr["data"].ToString());
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return Directories;
         }
 
-        /// <summary>
-        /// Checks if the given directory exists
-        /// </summary>
-        /// <returns><c>true</c>, if directory was found, <c>false</c> otherwise</returns>
-        /// <param name="alarm">The Directory we want to know already exists</param>
         public bool DoesDirectoryExist(Directory directory)
         {
             var containsDirectory = Realm.All<Directory>().Contains(directory);

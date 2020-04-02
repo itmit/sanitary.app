@@ -12,7 +12,7 @@ namespace sanitary.app.PageModels
     [AddINotifyPropertyChangedInterface]
     public class NodeObjectPageModel : FreshBasePageModel
     {
-        private Services.IObjectStorageService _objectStorage;
+        private readonly Services.IObjectStorageService _objectStorage;
 
         private Models.Object CurrentObject;
         private List<Models.Object> UserObjects = new List<Models.Object>();
@@ -101,7 +101,7 @@ namespace sanitary.app.PageModels
         protected async override void ViewIsAppearing(object sender, System.EventArgs e)
         {
             base.ViewIsAppearing(sender, e);
-            CreateListsAsync();
+            await CreateListsAsync();
         }
 
         public override void Init(object initData)

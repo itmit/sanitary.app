@@ -15,8 +15,8 @@ namespace sanitary.app.PageModels
     [AddINotifyPropertyChangedInterface]
     public class DownloadEstimatePageModel : FreshBasePageModel
     {
-        private IObjectStorageService _objectStorage;
-        private IDownloader downloader = DependencyService.Get<IDownloader>();
+        private readonly IObjectStorageService _objectStorage;
+        private readonly IDownloader downloader = DependencyService.Get<IDownloader>();
 
         Models.Object Object;
 
@@ -60,7 +60,7 @@ namespace sanitary.app.PageModels
         protected async override void ViewIsAppearing(object sender, System.EventArgs e)
         {
             base.ViewIsAppearing(sender, e);
-            CreateListsAsync();
+            await CreateListsAsync();
         }
 
         public override void Init(object initData)

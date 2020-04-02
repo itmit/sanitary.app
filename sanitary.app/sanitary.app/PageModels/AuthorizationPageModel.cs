@@ -30,9 +30,9 @@ namespace sanitary.app.PageModels
         {
             get
             {
-                return new FreshAwaitCommand((param, tcs) =>
+                return new FreshAwaitCommand(async (param, tcs) =>
                 {
-                    OnLoginClickedAsync();
+                    await OnLoginClickedAsync();
                     tcs.SetResult(true);
                 });
             }
@@ -78,11 +78,6 @@ namespace sanitary.app.PageModels
                 return;
             }
 
-            //if (App.DeviceToken == null)
-            //{
-            //    App.DeviceToken = Plugin.FirebasePushNotification.CrossFirebasePushNotification.Current.Token;
-            //}
-
             bool isValid = await AreCredentialsCorrectAsync();
             if (isValid)
             {
@@ -94,7 +89,6 @@ namespace sanitary.app.PageModels
 
         private async Task<bool> AreCredentialsCorrectAsync()
         {
-            //return user.Name == Constants.Username && user.PhoneNumber == Constants.Password;
             if (string.IsNullOrWhiteSpace(EmailEntry) |
                 string.IsNullOrWhiteSpace(PasswordEntry) | PasswordEntry.Length < 6)
             {
@@ -114,18 +108,21 @@ namespace sanitary.app.PageModels
 
         private async Task<bool> SendUserInfoAsync()
         {
-            client = new HttpClient();
-            client.MaxResponseContentBufferSize = 209715200; // 200 MB
+            client = new HttpClient
+            {
+                MaxResponseContentBufferSize = 209715200 // 200 MB
+            };
 
             string restMethod = "login";
             System.Uri uri = new System.Uri(string.Format(Constants.RestUrl, restMethod));
 
             try
             {
-                JObject jmessage = new JObject();
-                jmessage.Add("email", EmailEntry);
-                jmessage.Add("password", PasswordEntry);
-                //jmessage.Add("device_token", user.Phone);
+                JObject jmessage = new JObject
+                {
+                    { "email", EmailEntry },
+                    { "password", PasswordEntry }
+                };
 
                 string json = jmessage.ToString();
                 StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
@@ -164,7 +161,6 @@ namespace sanitary.app.PageModels
             catch (System.Exception ex)
             {
                 await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
-                System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return true;

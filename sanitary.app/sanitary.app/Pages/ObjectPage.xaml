@@ -8,7 +8,6 @@
              Title="Объекты"
              BackgroundColor="#f3f3f3">
     <ContentPage.Content>
-        <!--Страница объекты-->
         <StackLayout BackgroundColor="White" Margin="0,10,0,0">
             <ListView 
                 x:Name="ObjectList"

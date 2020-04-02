@@ -3,13 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converters="clr-namespace:sanitary.app.Converters"
              mc:Ignorable="d"
              x:Class="sanitary.app.Pages.NodeObjectPage"
              BackgroundColor="#f3f3f3">
 
     <ContentPage.Content>
-        <!--Узлы объекта-->
         <StackLayout Orientation="Vertical" BackgroundColor="White" Margin="0,10,0,0" Padding="15,0,15,20" VerticalOptions="Start">
             <ListView 
                 x:Name="NodeListView"
@@ -52,8 +50,9 @@
                                 <ImageButton 
                                     Grid.Row="0"
                                     Grid.Column="1"
+                                    Aspect="Fill"
                                     Source="copy.png" 
-                                    WidthRequest="30" 
+                                    WidthRequest="15" 
                                     HeightRequest="15" 
                                     BackgroundColor="Transparent" 
                                     VerticalOptions="Center" 
@@ -63,9 +62,10 @@
                                 <ImageButton 
                                     Grid.Row="0"
                                     Grid.Column="2"
+                                    Aspect="Fill"
                                     Source="ic_plus_type2_4x.png" 
                                     Margin="30,0"
-                                    WidthRequest="30" 
+                                    WidthRequest="15" 
                                     HeightRequest="15" 
                                     BackgroundColor="Transparent" 
                                     VerticalOptions="Center" 
@@ -89,8 +89,6 @@
                                 </Grid.RowDefinitions>
                                 <Label Grid.Column="0" Text="{Binding Title}" TextColor="Black" FontSize="Default" Margin="5,0,0,0" VerticalOptions="Start" HorizontalTextAlignment="Start"/>
                                 <Label Grid.Column="1" Text="{Binding Quantity}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center"/>
-                                <!--<Label Grid.Column="2" Text="{Binding Price}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center"/>
-                                <Label Grid.Column="3" Text="{Binding TotalAmount}" TextColor="Black" Margin="0,0,5,0" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="End"/>-->
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

@@ -13,8 +13,7 @@ namespace sanitary.app.PageModels
     [AddINotifyPropertyChangedInterface]
     public class ListSubcategoriesPageModel : FreshBasePageModel
     {
-
-        IDirectoryStorageService _directoryStorage;
+        readonly IDirectoryStorageService _directoryStorage;
         Directory _selectedDirectory;
         Directory Directory;
 
@@ -54,7 +53,7 @@ namespace sanitary.app.PageModels
                 return;
             }
 
-            CreateListsAsync();
+            await CreateListsAsync();
         }
 
         async Task CreateListsAsync()

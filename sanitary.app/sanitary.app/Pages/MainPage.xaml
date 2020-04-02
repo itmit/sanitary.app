@@ -7,7 +7,6 @@
              x:Class="sanitary.app.Pages.MainPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <!--Главная страница-->
         <ScrollView>
             <Grid>
                 <Image Source="pic_background.png" Aspect="AspectFill" Opacity="0.7"/>

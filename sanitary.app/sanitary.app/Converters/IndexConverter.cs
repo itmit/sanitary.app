@@ -1,7 +1,4 @@
-﻿using sanitary.app.Models;
-using System;
-using System.Collections;
-using System.Collections.ObjectModel;
+﻿using System;
 using System.Globalization;
 using System.Linq;
 using Xamarin.Forms;

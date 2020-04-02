@@ -12,7 +12,7 @@ namespace sanitary.app.PageModels
     [AddINotifyPropertyChangedInterface]
     public class ObjectPlusPageModel : FreshBasePageModel
     {
-        IObjectStorageService _objectStorage;
+        readonly IObjectStorageService _objectStorage;
 
         public bool IsEditMode { get; set; } = false;
 
@@ -22,7 +22,6 @@ namespace sanitary.app.PageModels
 
         public string SaveButtonText { get; set; } = "Создать объект";
 
-        //public ObservableCollection<Node> ObjectNodes { get; private set; }
         public ObservableCollection<Grouping<Node, Material>> ObjectNodes { get; set; } = new ObservableCollection<Grouping<Node, Material>>();
 
         public Command AddNodeCommand
@@ -90,8 +89,10 @@ namespace sanitary.app.PageModels
         public ObjectPlusPageModel(IObjectStorageService objectStorage)
         {
             _objectStorage = objectStorage;
-            CreatedObject = new Models.Object();
-            CreatedObject.Nodes = new List<Node>();
+            CreatedObject = new Models.Object
+            {
+                Nodes = new List<Node>()
+            };
             ObjectNodes = new ObservableCollection<Grouping<Node, Material>>();
         }
 
@@ -105,13 +106,10 @@ namespace sanitary.app.PageModels
 
             var group = new Grouping<Node, Material>(newNode, newNode.Materials);
             ObjectNodes.Insert(0, group);
-            //ObjectNodes.Add(newNode);
         }
 
         private async void DeleteNodeAsync(Grouping<Node, Material> nodeToDelete)
         {
-            //var groupToDelete = new Grouping<Node, Material>(nodeToDelete, nodeToDelete.Materials);
-
             if (IsEditMode)
             {
                 var response = await _objectStorage.DeleteNodeAsync(nodeToDelete.GroupKey.uuid);
@@ -138,7 +136,6 @@ namespace sanitary.app.PageModels
 
                 ObjectNodes.Add(group);
             }
-            //ObjectNodes = new ObservableCollection<Node>(objectInfo.Nodes);
         }
 
         private async void CreateObjectAsync()

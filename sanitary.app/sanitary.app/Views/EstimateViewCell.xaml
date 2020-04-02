@@ -5,8 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="sanitary.app.Views.EstimateViewCell">
-  <ViewCell.View>
-      <!--Ячейка для списка на странице скачать смету-->
+    <ViewCell.View>
         <Grid Margin="5,0">
             <Label Grid.Column="0" Text="{Binding Title}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Start"/>
             <Label Grid.Column="1" Text="{Binding Quantity}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center"/>

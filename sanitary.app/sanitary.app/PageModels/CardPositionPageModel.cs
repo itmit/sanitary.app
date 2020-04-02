@@ -12,9 +12,8 @@ namespace sanitary.app.PageModels
     [AddINotifyPropertyChangedInterface]
     public class CardPositionPageModel : FreshBasePageModel
     {
-
-        IDirectoryStorageService _directoryStorage;
-        private IObjectStorageService _objectStorage;
+        readonly IDirectoryStorageService _directoryStorage;
+        private readonly IObjectStorageService _objectStorage;
         private Directory Directory;
         private Position CurrentPosition;
         private Models.Object _selectedObject;

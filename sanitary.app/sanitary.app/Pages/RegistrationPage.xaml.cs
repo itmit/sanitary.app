@@ -12,19 +12,9 @@ namespace sanitary.app.Pages
 			InitializeComponent();
 		}
 
-		private void Button_OnClicked1(object sender, EventArgs e)
-		{
-			Navigation.PopAsync();
-		}
-
-		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-		{
-			Navigation.PushAsync(new PrivatePolicyPage());
-		}
-
-		private void CheckBox_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
-		{
-			RegButton.IsEnabled = true;
-		}
-	}
+        private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PrivatePolicyPage());
+        }
+    }
 }

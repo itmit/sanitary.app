@@ -12,11 +12,9 @@ namespace sanitary.app.PageModels
     public class EstimatesPageModel : FreshBasePageModel
     {
         Object _selectedObject;
-        private IObjectStorageService _objectStorage;
+        private readonly IObjectStorageService _objectStorage;
 
         public ObservableCollection<Object> UserObjects { get; set; } = new ObservableCollection<Object>();
-
-        private List<Object> AllObjects { get; set; } = new List<Object>();
 
         public Object SelectedObject
         {
@@ -54,18 +52,13 @@ namespace sanitary.app.PageModels
         protected async override void ViewIsAppearing(object sender, System.EventArgs e)
         {
             base.ViewIsAppearing(sender, e);
-            CreateListsAsync();
+            await CreateListsAsync();
         }
 
         async Task CreateListsAsync()
         {
             List<Object> updatedList = await GetUserObjectsAsync();
             UserObjects = new ObservableCollection<Object>(updatedList);
-
-            //if (AllObjects.SequenceEqual(updatedList) == false)
-            //{
-            //    UserObjects = new ObservableCollection<Object>(AllObjects.ToList());
-            //}
         }
 
         private async Task<List<Object>> GetUserObjectsAsync()

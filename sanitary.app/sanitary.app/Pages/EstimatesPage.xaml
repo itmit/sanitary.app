@@ -8,7 +8,6 @@
              Title="Сметы"
              BackgroundColor="#f3f3f3">
     <ContentPage.Content>
-        <!--Страница сметы-->
         <StackLayout BackgroundColor="White" Margin="0,10,0,0">
             <ListView 
                 HasUnevenRows="True" 

@@ -1,10 +1,8 @@
 ﻿using FreshMvvm;
 using PropertyChanged;
 using System.Windows.Input;
-using Realms;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
-using sanitary.app.Models;
 using System.Threading.Tasks;
 
 namespace sanitary.app.PageModels
@@ -12,7 +10,7 @@ namespace sanitary.app.PageModels
     [AddINotifyPropertyChangedInterface]
     public class RestorePassPageModel : FreshBasePageModel
     {
-        HttpClient client;
+        readonly HttpClient client;
 
         public string EmailEntry { get; set; } = string.Empty;
         public string CodeEntry { get; set; } = string.Empty;
@@ -26,9 +24,9 @@ namespace sanitary.app.PageModels
         {
             get
             {
-                return new Xamarin.Forms.Command((param) =>
+                return new Xamarin.Forms.Command(async (param) =>
                 {
-                    SendEmail();
+                    await SendEmail();
                 });
             }
         }
@@ -57,8 +55,10 @@ namespace sanitary.app.PageModels
 
             try
             {
-                JObject jmessage = new JObject();
-                jmessage.Add("email", EmailEntry);
+                JObject jmessage = new JObject
+                {
+                    { "email", EmailEntry }
+                };
 
                 string json = jmessage.ToString();
                 StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
@@ -95,11 +95,13 @@ namespace sanitary.app.PageModels
 
             try
             {
-                JObject jmessage = new JObject();
-                jmessage.Add("email", EmailEntry);
-                jmessage.Add("code", CodeEntry);
-                jmessage.Add("password", PasswordEntry);
-                jmessage.Add("password_confirmation", RepeatPasswordEntry);
+                JObject jmessage = new JObject
+                {
+                    { "email", EmailEntry },
+                    { "code", CodeEntry },
+                    { "password", PasswordEntry },
+                    { "password_confirmation", RepeatPasswordEntry }
+                };
 
                 string json = jmessage.ToString();
                 StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");

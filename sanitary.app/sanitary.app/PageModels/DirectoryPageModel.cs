@@ -15,8 +15,7 @@ namespace sanitary.app.PageModels
     [AddINotifyPropertyChangedInterface]
     public class DirectoryPageModel : FreshBasePageModel
     {
-
-        IDirectoryStorageService _directoryStorage;
+        readonly IDirectoryStorageService _directoryStorage;
         Directory _selectedDirectory;
 
         public ICommand SelectedItemCommand
@@ -75,12 +74,7 @@ namespace sanitary.app.PageModels
                 return;
             }
 
-            CreateListsAsync();
-
-            //Plugin.FirebasePushNotification.CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
-            //{
-            //    CreateListsAsync();
-            //};
+            await CreateListsAsync();
         }
 
         private async Task CreateListsAsync()

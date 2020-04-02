@@ -6,18 +6,15 @@ using sanitary.app.Models;
 using System.Windows.Input;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
-using Newtonsoft.Json;
 using Realms;
-using System.Collections.Generic;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace sanitary.app.PageModels
 {
     [AddINotifyPropertyChangedInterface]
     public class ProfilePageModel : FreshBasePageModel
     {
-        HttpClient client = new HttpClient();
+        readonly HttpClient client = new HttpClient();
         public User CurrentUser { get; private set; }
         public string UserEmail { get; private set; }
         public string PasswordEntry { get; set; }
@@ -66,7 +63,7 @@ namespace sanitary.app.PageModels
             }
         }
 
-        protected async override void ViewIsAppearing(object sender, EventArgs e)
+        protected override void ViewIsAppearing(object sender, EventArgs e)
         {
             base.ViewIsAppearing(sender, e);
 
@@ -87,9 +84,11 @@ namespace sanitary.app.PageModels
             {
                 SetAuthenticationHeader();
 
-                JObject jmessage = new JObject();
-                jmessage.Add("password", PasswordEntry);
-                jmessage.Add("password_confirmation", RepeatPasswordEntry);
+                JObject jmessage = new JObject
+                {
+                    { "password", PasswordEntry },
+                    { "password_confirmation", RepeatPasswordEntry }
+                };
 
                 string json = jmessage.ToString();
                 StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");

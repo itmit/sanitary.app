@@ -1,5 +1,4 @@
-﻿using FreshMvvm;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace sanitary.app.Pages
@@ -16,12 +15,6 @@ namespace sanitary.app.Pages
         public ObjectPage()
         {
             InitializeComponent();
-		}
-
-		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
-		{
-
-			Navigation.PushAsync(new NodeObjectPage());
 		}
 
         protected override bool OnBackButtonPressed()

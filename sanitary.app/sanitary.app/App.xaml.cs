@@ -25,22 +25,7 @@ namespace sanitary.app
             Page loginPage = FreshPageModelResolver.ResolvePageModel<AuthorizationPageModel>();
             FreshNavigationContainer loginContainer = new FreshNavigationContainer(loginPage, NavigationContainerNames.AuthenticationContainer);
 
-            FreshTabbedNavigationContainer tabbedNavigation = new FreshTabbedNavigationContainer(NavigationContainerNames.MainContainer);
-            tabbedNavigation.On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
-
-            tabbedNavigation.AddTab<MainPageModel>("Главная", "ic_home_4x.png", null);
-            tabbedNavigation.AddTab<DirectoryPageModel>("Каталог", "ic_directory_4x.png", null);
-            tabbedNavigation.AddTab<EstimatesPageModel>("Сметы", "ic_document_4x.png", null);
-            tabbedNavigation.AddTab<ObjectPageModel>("Объекты", "ic_object_4x.png", null);
-            tabbedNavigation.AddTab<ObjectPlusPageModel>("+Объект", "ic_object_plus_4x.png", null);
-
-            tabbedNavigation.SelectedTabColor = Color.FromHex("#FFFFFF");
-            tabbedNavigation.UnselectedTabColor = Color.FromHex("#77A9D3");
-            tabbedNavigation.BarBackgroundColor = Color.FromHex("#686bb1");
-
-            tabbedNavigation.CurrentPage.Navigation.PopToRootAsync();
-
-            tabbedNavigation.CurrentPageChanged += TabbedNavigation_CurrentPageChanged;
+            ExtendedTabbedPage tabbedNavigation = SetUpTabbedNavigation();
 
             Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Pan);
 
@@ -60,14 +45,34 @@ namespace sanitary.app
 
         private void TabbedNavigation_CurrentPageChanged(object sender, System.EventArgs e)
         {
-            var test = (FreshTabbedNavigationContainer)sender;
-            test.CurrentPage.Navigation.PopToRootAsync();
+            var navigationContainer = (FreshTabbedNavigationContainer)sender;
+            navigationContainer.CurrentPage.Navigation.PopToRootAsync();
         }
 
         void SetUpIoC()
         {
             FreshIOC.Container.Register<IDirectoryStorageService, DirectoryStorageService>();
             FreshIOC.Container.Register<IObjectStorageService, ObjectStorageService>();
+        }
+
+        private ExtendedTabbedPage SetUpTabbedNavigation()
+        {
+            ExtendedTabbedPage tabbedNavigation = new ExtendedTabbedPage(NavigationContainerNames.MainContainer);
+            tabbedNavigation.On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
+
+            tabbedNavigation.AddTab<MainPageModel>("Главная", "ic_home_4x.png", null);
+            tabbedNavigation.AddTab<DirectoryPageModel>("Каталог", "ic_directory_4x.png", null);
+            tabbedNavigation.AddTab<EstimatesPageModel>("Сметы", "ic_document_4x.png", null);
+            tabbedNavigation.AddTab<ObjectPageModel>("Объекты", "ic_object_4x.png", null);
+            tabbedNavigation.AddTab<ObjectPlusPageModel>("+Объект", "ic_object_plus_4x.png", null);
+
+            tabbedNavigation.SelectedTabColor = Color.FromHex("#FFFFFF");
+            tabbedNavigation.UnselectedTabColor = Color.FromHex("#77A9D3");
+            tabbedNavigation.BarBackgroundColor = Color.FromHex("#686bb1");
+
+            tabbedNavigation.CurrentPageChanged += TabbedNavigation_CurrentPageChanged;
+
+            return tabbedNavigation;
         }
 
         protected override void OnStart()
