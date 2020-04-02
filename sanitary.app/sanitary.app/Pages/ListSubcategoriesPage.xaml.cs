@@ -1,5 +1,4 @@
-﻿using sanitary.app.ViewModels;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace sanitary.app.Pages

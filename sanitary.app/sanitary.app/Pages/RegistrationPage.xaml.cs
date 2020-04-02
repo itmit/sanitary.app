@@ -1,5 +1,4 @@
 ﻿using System;
-using sanitary.app.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,11 +10,6 @@ namespace sanitary.app.Pages
 		public RegistrationPage()
 		{
 			InitializeComponent();
-		}
-
-		private void Button_OnClicked(object sender, EventArgs e)
-		{
-			Navigation.PushAsync(new MenuTabbedView());
 		}
 
 		private void Button_OnClicked1(object sender, EventArgs e)

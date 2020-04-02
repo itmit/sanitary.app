@@ -39,7 +39,7 @@ namespace sanitary.app.Droid
                     {
                         if (grantResults.Length > 0 && grantResults[0] == Permission.Granted)
                         {
-                            Toast.MakeText(ApplicationContext, "Доступ разрешен. Нажмити скачать для загрузки файла", ToastLength.Short).Show();
+                            Toast.MakeText(ApplicationContext, "Доступ разрешен. Нажмите скачать для загрузки файла", ToastLength.Short).Show();
                         }
                         else
                         {

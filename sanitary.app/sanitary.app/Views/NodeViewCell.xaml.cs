@@ -1,5 +1,4 @@
-﻿using sanitary.app.PageModels;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

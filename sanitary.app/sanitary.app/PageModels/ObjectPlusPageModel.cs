@@ -1,14 +1,10 @@
 ﻿using FreshMvvm;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using PropertyChanged;
 using sanitary.app.Models;
 using sanitary.app.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net.Http;
 using Xamarin.Forms;
 
 namespace sanitary.app.PageModels
@@ -18,11 +14,13 @@ namespace sanitary.app.PageModels
     {
         IObjectStorageService _objectStorage;
 
-        private bool IsEditMode { get; set; } = false;
+        public bool IsEditMode { get; set; } = false;
 
         public Models.Object CreatedObject { get; set; }
 
         public string ObjectName { get; set; }
+
+        public string SaveButtonText { get; set; } = "Создать объект";
 
         //public ObservableCollection<Node> ObjectNodes { get; private set; }
         public ObservableCollection<Grouping<Node, Material>> ObjectNodes { get; set; } = new ObservableCollection<Grouping<Node, Material>>();
@@ -80,6 +78,7 @@ namespace sanitary.app.PageModels
                 IsEditMode = true;
                 CreatedObject = passedObject;
                 CurrentPage.Title = CreatedObject.Name;
+                SaveButtonText = "Cохранить";
                 InitializeObjectToEditAsync();
             }
             else
@@ -105,7 +104,7 @@ namespace sanitary.app.PageModels
             };
 
             var group = new Grouping<Node, Material>(newNode, newNode.Materials);
-            ObjectNodes.Add(group);
+            ObjectNodes.Insert(0, group);
             //ObjectNodes.Add(newNode);
         }
 

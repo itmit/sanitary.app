@@ -33,15 +33,43 @@
                         </Label.FormattedText>
                     </Label>
                     <Grid>
-                        <StackLayout x:Name="EditPass" Orientation="Horizontal" Spacing="10" IsVisible="True">
+                        <StackLayout x:Name="EditPass" Orientation="Horizontal" Spacing="10">
+                            <StackLayout.Triggers>
+                                <DataTrigger TargetType="StackLayout" Binding="{Binding IsEditPassActive}" Value="false">
+                                    <Setter Property="IsVisible" Value="True"/>
+                                </DataTrigger>
+                            </StackLayout.Triggers>
                             <Image Source="ic_edit_pass.png" WidthRequest="13" HeightRequest="13" HorizontalOptions="Start" VerticalOptions="Center"></Image>
                             <Label Text="Изменить пароль"></Label>
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                                <TapGestureRecognizer Command="{Binding ActivateEditPassCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
-                        <Entry x:Name="EntryPass" Placeholder="Изменить пароль" Text="{Binding Password}" TextColor="Black" PlaceholderColor="Black" IsPassword="True" FontSize="16" VerticalOptions="Center" IsVisible="False" BackgroundColor="White" Completed="EntryPass_OnCompleted" Unfocused="EntryPass_OnUnfocused">
-                        </Entry>
+                        <StackLayout Orientation="Vertical" IsVisible="{Binding IsEditPassActive}">
+                            <Entry 
+                                x:Name="PasswordEntry" 
+                                Placeholder="Изменить пароль" 
+                                Text="{Binding PasswordEntry}" 
+                                TextColor="Black" 
+                                PlaceholderColor="Black" 
+                                IsPassword="True" 
+                                FontSize="16" 
+                                VerticalOptions="Center"
+                                BackgroundColor="White" >
+                            </Entry>
+                            <Entry 
+                                x:Name="RepeatPasswordEntry" 
+                                Placeholder="Повторите пароль" 
+                                Text="{Binding RepeatPasswordEntry}" 
+                                TextColor="Black" 
+                                PlaceholderColor="Black" 
+                                IsPassword="True" 
+                                FontSize="16" 
+                                VerticalOptions="Center"
+                                BackgroundColor="White" >
+                            </Entry>
+                            <Button x:Name="SaveButton" Text="Сохранить пароль" Command="{Binding UpdatePasswordCommand}" Margin="0,20"/>
+                        </StackLayout>
                     </Grid>
                     <Label Text="Выйти из профиля">
                         <Label.GestureRecognizers>

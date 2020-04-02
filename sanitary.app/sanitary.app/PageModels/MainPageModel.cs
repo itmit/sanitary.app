@@ -47,7 +47,7 @@ namespace sanitary.app.PageModels
                     await CoreMethods.SwitchSelectedTab<ObjectPlusPageModel>();
                     break;
                 case "Open Telegram":
-                    await Xamarin.Essentials.Launcher.OpenAsync(new System.Uri("https://telegram.org/"));
+                    await Xamarin.Essentials.Launcher.OpenAsync(new System.Uri("tg://resolve?domain=santech_inform"));
                     break;
             }
             return;

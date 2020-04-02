@@ -24,5 +24,6 @@ namespace sanitary.app.Services
 
         Task<bool> DeleteUserObjectsAsync(Models.Object objectToDelete);
         Task<bool> DeleteNodeAsync(string NodeUuid);
+        Task<bool> DeleteMaterialFromNodeAsync(string materialUuid);
     }
 }

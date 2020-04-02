@@ -23,6 +23,8 @@ namespace sanitary.app.PageModels
         public string Password { get; set; } = string.Empty;
         public string RepeatPassword { get; set; } = string.Empty;
 
+        public string UserToken { get; set; } = string.Empty;
+
         public RegistrationPageModel()
         {
 
@@ -65,6 +67,8 @@ namespace sanitary.app.PageModels
             if (isValid)
             {
                 App.IsUserLoggedIn = true;
+
+                user.Token = UserToken;
 
                 Realm.Write(() =>
                 {
@@ -131,6 +135,10 @@ namespace sanitary.app.PageModels
 
                 if (response.IsSuccessStatusCode)
                 {
+                    string result = await response.Content.ReadAsStringAsync();
+                    JObject resultArray = JObject.Parse(result);
+
+                    UserToken = resultArray["data"]["access_token"].ToString();
                     return true;
                 }
                 else
@@ -144,7 +152,7 @@ namespace sanitary.app.PageModels
             }
             catch (System.Exception ex)
             {
-                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
                 System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
@@ -175,24 +183,7 @@ namespace sanitary.app.PageModels
 
             }
 
-            await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка", errorMessage, "OK");
-        }
-
-        private string ClearNumber(string phoneNumber)
-        {
-            if (string.IsNullOrEmpty(phoneNumber))
-            {
-                return "";
-            }
-
-            phoneNumber = System.Text.RegularExpressions.Regex.Replace(phoneNumber, "[\\D]", "");
-
-            if (phoneNumber[0] == '7')
-            {
-                phoneNumber = '8' + phoneNumber.Substring(1);
-            }
-
-            return phoneNumber;
+            await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorMessage, "OK");
         }
     }
 }

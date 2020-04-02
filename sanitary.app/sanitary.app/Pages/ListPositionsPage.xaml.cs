@@ -1,5 +1,4 @@
-﻿using sanitary.app.ViewModels;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace sanitary.app.Pages
@@ -10,7 +9,6 @@ namespace sanitary.app.Pages
         public ListPositionsPage()
         {
             InitializeComponent();
-            BindingContext = new ListPositionsViewModel();
         }
 
 		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)

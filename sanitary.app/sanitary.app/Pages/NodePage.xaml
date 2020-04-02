@@ -3,13 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewCell="clr-namespace:sanitary.app.Views;assembly=sanitary.app"
-             xmlns:converters="clr-namespace:sanitary.app.Converters"
              mc:Ignorable="d"
-             x:Class="sanitary.app.Pages.DownloadEstimatePage"
-             BackgroundColor="#f3f3f3">
+             x:Class="sanitary.app.Pages.NodePage">
     <ContentPage.Content>
-        <!--Страница скачать сметы-->
         <StackLayout Margin="0,10,0,0" Padding="15,0" BackgroundColor="White">
             <ListView 
                 x:Name="MaterialsListView"
@@ -18,10 +14,7 @@
                 HasUnevenRows="True" 
                 VerticalScrollBarVisibility="Never" 
                 SelectionMode="None" 
-                IsPullToRefreshEnabled="True"
-                RefreshCommand="{Binding UpdateListCommand}"
-                IsRefreshing="{Binding IsRefreshing}"
-                ItemsSource="{Binding ObjectMaterials}">
+                ItemsSource="{Binding MaterialList}">
                 <ListView.Header>
                     <Grid Margin="5,0">
                         <Grid.Resources>
@@ -34,14 +27,9 @@
                                 </Style>
                             </ResourceDictionary>
                         </Grid.Resources>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="№ п/п" HorizontalTextAlignment="Start"/>
-                        <Label Grid.Column="1" Text="Наименование" HorizontalTextAlignment="Start"/>
-                        <Label Grid.Column="2" Text="Кол-во" HorizontalTextAlignment="End"/>
-                        <!--<Label Grid.Column="2" Text="Цена"/>
-                        <Label Grid.Column="3" Text="Итого" HorizontalTextAlignment="End"/>-->
+                        <Label Grid.Column="0" Text="Наименование" HorizontalTextAlignment="Start"/>
+                        <Label Grid.Column="1" Text="Кол-во" HorizontalTextAlignment="End"/>
+                        <Label Grid.Column="2" Text="" HorizontalTextAlignment="End"/>
                     </Grid>
                 </ListView.Header>
 
@@ -49,41 +37,36 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid Margin="5,0">
-                                <Grid.Resources>
-                                    <converters:IndexConverter x:Key="IndexConverter"/>
-                                </Grid.Resources>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40"/>
-                                </Grid.ColumnDefinitions>
                                 <Label 
-                                    Grid.Column="0"
-                                    TextColor="Black" 
-                                    FontSize="Default" 
-                                    VerticalOptions="Start" 
-                                    HorizontalTextAlignment="Center"
-                                    Text="{Binding ., Converter={StaticResource IndexConverter}, ConverterParameter={x:Reference MaterialsListView}}" />
-                                <Label 
-                                    Grid.Column="1" 
+                                    Grid.Column="0" 
                                     Text="{Binding Title}" 
                                     TextColor="Black" 
                                     FontSize="Default" 
                                     VerticalOptions="Start" 
                                     HorizontalTextAlignment="Start"/>
                                 <Label 
-                                    Grid.Column="2" 
+                                    Grid.Column="1" 
                                     Text="{Binding Quantity}" 
                                     TextColor="Black" 
                                     FontSize="Default" 
                                     VerticalOptions="Start" 
                                     HorizontalTextAlignment="End"/>
+                                <ImageButton 
+                                    Grid.Column="2"
+                                    Source="delete_48.png" 
+                                    WidthRequest="20" 
+                                    HeightRequest="20" 
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="End"
+                                    Command="{Binding Path=BindingContext.DeleteMaterialCommand, Source={x:Reference MaterialsListView}}"
+                                    CommandParameter="{Binding uuid}"/>
                             </Grid>
                         </ViewCell>
                         <!--<viewCell:EstimateViewCell/>-->
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-            <Button Text="Скачать .PDF" Margin="0,0,0,20" Command="{Binding DownloadPDFCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

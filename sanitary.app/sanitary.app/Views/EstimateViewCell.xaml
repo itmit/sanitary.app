@@ -7,17 +7,9 @@
              x:Class="sanitary.app.Views.EstimateViewCell">
   <ViewCell.View>
       <!--Ячейка для списка на странице скачать смету-->
-      <Grid Margin="5,0">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="2*"/>
-              <ColumnDefinition Width="*"/>
-              <ColumnDefinition Width="*"/>
-              <ColumnDefinition Width="*"/>
-          </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="{Binding Title}" WidthRequest="145" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Start"/>
+        <Grid Margin="5,0">
+            <Label Grid.Column="0" Text="{Binding Title}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Start"/>
             <Label Grid.Column="1" Text="{Binding Quantity}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center"/>
-            <Label Grid.Column="2" Text="{Binding Price}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center"/>
-            <Label Grid.Column="3" Text="{Binding TotalAmount}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="End"/>
-      </Grid>
+        </Grid>
     </ViewCell.View>
 </ViewCell>

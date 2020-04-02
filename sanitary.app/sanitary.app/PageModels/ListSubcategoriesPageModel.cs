@@ -1,14 +1,12 @@
 ﻿using PropertyChanged;
 using sanitary.app.Models;
 using FreshMvvm;
-using Xamarin.Forms;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.ObjectModel;
 using sanitary.app.Services;
-using System.Windows.Input;
 
 namespace sanitary.app.PageModels
 {

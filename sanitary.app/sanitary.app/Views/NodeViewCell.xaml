@@ -3,42 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewCell="clr-namespace:sanitary.app.Views;assembly=sanitary.app"
              mc:Ignorable="d"
              x:Name="NodeCell"
              x:Class="sanitary.app.Views.NodeViewCell">
-  <ViewCell.View>
-        <StackLayout x:Name="StackVisible" Margin="20,0,0,0">
+    <ViewCell.View>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
             <Entry 
+                Grid.Row="0"
+                Grid.Column="0"
                 x:Name="NodeNameEntry"
                 Placeholder="Введите название узла"
                 FontSize="Body" 
                 Text="{Binding GroupKey.Name}"
                 FontFamily="GilroySemiBold.ttf#GilroySemiBold" 
                 TextColor="Black"/>
-            <StackLayout Orientation="Horizontal" Margin="5,0,5,10">
-                <Label Text="Добавить материалы" FontSize="Body" TextColor="Black"/>
-                <ImageButton 
-                    IsEnabled="False"
-                    Source="ic_plus_type2_4x.png" 
-                    WidthRequest="15" 
-                    HeightRequest="15" 
-                    BackgroundColor="Transparent" 
-                    VerticalOptions="Center" 
-                    HorizontalOptions="EndAndExpand"
-                    Command="{Binding Source={x:Reference Name=NodeCell}, Path=Command}"/>
-                <ImageButton 
-                    IsEnabled="False"
-                    Source="delete_48.png" 
-                    WidthRequest="15" 
-                    HeightRequest="15" 
-                    BackgroundColor="Transparent" 
-                    VerticalOptions="Center" 
-                    HorizontalOptions="EndAndExpand"
-                    Command="{Binding Source={x:Reference Name=NodeCell}, Path=DeleteCommand}"
-                    CommandParameter="{Binding .}"/>
-            </StackLayout>
-            <BoxView HeightRequest="1" BackgroundColor="#CCCCCC"/>
-        </StackLayout>
+            <ImageButton 
+                Grid.Row="0"
+                Grid.Column="1"
+                Source="delete_48.png" 
+                WidthRequest="20" 
+                HeightRequest="20" 
+                BackgroundColor="Transparent" 
+                VerticalOptions="Center" 
+                HorizontalOptions="End"
+                Command="{Binding Source={x:Reference Name=NodeCell}, Path=DeleteCommand}"
+                CommandParameter="{Binding .}"/>
+            <BoxView 
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                HeightRequest="1" 
+                BackgroundColor="#CCCCCC"/>
+        </Grid>
     </ViewCell.View>
 </ViewCell>

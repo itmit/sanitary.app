@@ -101,7 +101,7 @@ namespace sanitary.app.PageModels
             {
                 Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await CoreMethods.DisplayAlert("Успех", "Объект удален", "Ок");
+                    await CoreMethods.DisplayAlert("Выполнено", "Объект удален", "Ок");
                     await CreateListsAsync();
                 });
             }

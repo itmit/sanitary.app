@@ -23,10 +23,9 @@
                         Text="{Binding ObjectName}"/>
                 </Frame>
 
-                <Button x:Name="SaveButton" Text="Сохранить" Command="{Binding CreateObjectCommand}" VerticalOptions="Center"  Margin="0,20"/>
-
-                <StackLayout Spacing="0" Margin="0,0,0,20">
-                    <StackLayout Orientation="Horizontal" Margin="5,0,5,10">
+                <StackLayout Spacing="0" Margin="0,20" IsVisible="{Binding IsEditMode}">
+                    <Button Text="СОЗДАТЬ УЗЕЛ" Command="{Binding AddNodeCommand}" VerticalOptions="Center"  Margin="5,0,5,10"/>
+                    <!--<StackLayout Orientation="Horizontal" Margin="5,0,5,10">
                         <Label Text="Новый узел" FontSize="Body" TextColor="Black"/>
                         <ImageButton 
                             Source="ic_plus_type2_4x.png" 
@@ -36,12 +35,13 @@
                             VerticalOptions="Center" 
                             HorizontalOptions="EndAndExpand" 
                             Command="{Binding AddNodeCommand}"/>
-                    </StackLayout>
+                    </StackLayout>-->
                     <BoxView HeightRequest="1" BackgroundColor="#CCCCCC"/>
                 </StackLayout>
 
                 <ListView 
                     x:Name="NodeListView"
+                    HeightRequest="300"
                     HasUnevenRows="True"
                     SelectionMode="None" 
                     SeparatorVisibility="None" 
@@ -60,6 +60,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+
+                <Button x:Name="SaveButton" Text="{Binding SaveButtonText}" Command="{Binding CreateObjectCommand}" VerticalOptions="Center"  Margin="0,20"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

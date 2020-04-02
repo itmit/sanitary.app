@@ -49,16 +49,32 @@ namespace sanitary.app.PageModels
             }
         }
 
-        async void OpenRegisterPage()
+        public ICommand OpenRestorePassCommand
+        {
+            get
+            {
+                return new Xamarin.Forms.Command((param) =>
+                {
+                    OpenRestorePassPage();
+                });
+            }
+        }
+
+        private async void OpenRegisterPage()
         {
             await CoreMethods.PushPageModel<RegistrationPageModel>();
         }
 
-        async Task OnLoginClickedAsync()
+        private async void OpenRestorePassPage()
+        {
+            await CoreMethods.PushPageModel<RestorePassPageModel>();
+        }
+
+        private async Task OnLoginClickedAsync()
         {
             if (IsThereInternet() == false)
             {
-                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка", "Интернет-соединение отсутствует. Подключитесь к работающей сети.", "OK");
+                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", "Интернет-соединение отсутствует. Подключитесь к работающей сети.", "OK");
                 return;
             }
 
@@ -76,13 +92,13 @@ namespace sanitary.app.PageModels
 
         }
 
-        async Task<bool> AreCredentialsCorrectAsync()
+        private async Task<bool> AreCredentialsCorrectAsync()
         {
             //return user.Name == Constants.Username && user.PhoneNumber == Constants.Password;
             if (string.IsNullOrWhiteSpace(EmailEntry) |
                 string.IsNullOrWhiteSpace(PasswordEntry) | PasswordEntry.Length < 6)
             {
-                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка", "Неверно указан email или пароль", "OK");
+                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", "Неверно указан email или пароль", "OK");
                 return false;
             }
 
@@ -147,7 +163,7 @@ namespace sanitary.app.PageModels
             }
             catch (System.Exception ex)
             {
-                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
                 System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
@@ -178,7 +194,7 @@ namespace sanitary.app.PageModels
 
             }
 
-            await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка", errorMessage, "OK");
+            await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorMessage, "OK");
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using sanitary.app.Models;
-using Xamarin.Forms;
 using Realms;
 using Newtonsoft.Json;
 using System;
@@ -9,7 +8,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Diagnostics;
-using System.Text;
 using Newtonsoft.Json.Linq;
 
 namespace sanitary.app.Services
@@ -186,6 +184,43 @@ namespace sanitary.app.Services
             }
 
             return Position;
+        }
+
+        public async Task<List<Directory>> SearchDirectoriesAsync(string searchText)
+        {
+            string restMethod = "catalog/search";
+            Directories = new List<Directory>();
+
+            if (!AuthenticationHeaderIsSet)
+            {
+                SetAuthenticationHeader();
+            }
+
+            Uri uri = new Uri(string.Format(Constants.RestUrl, restMethod));
+
+            try
+            {
+                JObject jmessage = new JObject();
+                jmessage.Add("name", searchText);
+                string json = jmessage.ToString();
+                StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+                var responseAwaiter = client.PostAsync(uri, content).ConfigureAwait(false);
+                var response = responseAwaiter.GetAwaiter().GetResult();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    JObject catalogArr = JObject.Parse(result);
+                    Directories = JsonConvert.DeserializeObject<List<Directory>>(catalogArr["data"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
+
+            return Directories;
         }
 
         /// <summary>

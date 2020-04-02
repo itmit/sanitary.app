@@ -89,11 +89,11 @@ namespace sanitary.app.PageModels
         {
             if (e.FileSaved)
             {
-                CoreMethods.DisplayAlert("Успех", "Файл успешно сохранен", "Закрыть");
+                CoreMethods.DisplayAlert("Выполнено", "Файл успешно сохранен", "Закрыть");
             }
             else
             {
-                CoreMethods.DisplayAlert("Ошибка", "Ошибка при сохранении файла", "Закрыть");
+                CoreMethods.DisplayAlert("Не выполнено", "Ошибка при сохранении файла", "Закрыть");
             }
         }
     }

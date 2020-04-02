@@ -42,6 +42,8 @@ namespace sanitary.app
 
             tabbedNavigation.CurrentPageChanged += TabbedNavigation_CurrentPageChanged;
 
+            Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Pan);
+
             Realm realm = Realm.GetInstance();
             IQueryable<User> user = realm.All<User>();
             bool UserIsFound = user?.Count() > 0;

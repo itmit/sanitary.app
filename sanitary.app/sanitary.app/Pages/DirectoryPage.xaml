@@ -4,20 +4,29 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewCell="clr-namespace:sanitary.app.Views;assembly=sanitary.app"
-             xmlns:binding="clr-namespace:sanitary.app.ViewModels;assembly=sanitary.app"
+             xmlns:ex="clr-namespace:sanitary.app.Controls"
              mc:Ignorable="d"
              x:Class="sanitary.app.Pages.DirectoryPage"
              Title="Каталог">
-
-    <ContentPage.BindingContext>
-            <binding:DirectoryViewModel/>
-    </ContentPage.BindingContext>
-
     <ContentPage.Content>
         <!--Страница каталога-->
         <StackLayout Spacing="0" BackgroundColor="#f3f3f3">
             <Frame Margin="10" CornerRadius="2" Padding="0" IsClippedToBounds="True">
-                <SearchBar Placeholder="Поиск" BackgroundColor="White" FontSize="Body" FontFamily="GilroyRegular.ttf#GilroyRegular" TextColor="Black" PlaceholderColor="Black"/>
+                <SearchBar 
+                    Placeholder="Поиск" 
+                    BackgroundColor="White" 
+                    FontSize="Body" 
+                    FontFamily="GilroyRegular.ttf#GilroyRegular" 
+                    TextColor="Black" 
+                    PlaceholderColor="Black"
+                    x:Name="SearchBar" 
+                    SearchCommand="{Binding SearchCommand}" 
+                    SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}"
+                    Text="{Binding SearchText, Mode=TwoWay}">
+                    <SearchBar.Behaviors>
+                        <ex:TextChangedBehavior />
+                    </SearchBar.Behaviors>
+                </SearchBar>
             </Frame>
             <StackLayout Margin="0,0,0,5" Padding="0,5">
                 <ListView 

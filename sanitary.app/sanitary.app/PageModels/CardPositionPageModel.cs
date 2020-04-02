@@ -48,7 +48,7 @@ namespace sanitary.app.PageModels
 
         public string UserDescription { get; set; }
         public int PriceEntry { get; set; }
-        public int QuantityEntry { get; set; }
+        public int QuantityEntry { get; set; } = 1;
 
         private async void AddMaterialToNodeAsync()
         {
@@ -60,9 +60,15 @@ namespace sanitary.app.PageModels
                 Description = UserDescription,
             };
 
-            if(SelectedNode == null)
+            if(SelectedObject == null)
             {
-                CoreMethods.DisplayAlert("Внимание", "Не выбран объект для добавления материала", "Ok");
+                await CoreMethods.DisplayAlert("Внимание", "Не выбран объект для добавления материала", "Ok");
+                return;
+            }
+
+            if (SelectedNode == null)
+            {
+                await CoreMethods.DisplayAlert("Внимание", "Не выбран узел для добавления материала", "Ok");
                 return;
             }
 
@@ -70,12 +76,12 @@ namespace sanitary.app.PageModels
 
             if(result == true)
             {
-                await CoreMethods.DisplayAlert("Добавлено", "Материал успешно добавлен", "Ok");
+                await CoreMethods.DisplayAlert("Выполнено", "Материал успешно добавлен", "Ok");
                 await CoreMethods.PopToRoot(true);
             }
             else
             {
-                await CoreMethods.DisplayAlert("Ошибка", "Произошла ошибка при добавлении материала", "Ok");
+                await CoreMethods.DisplayAlert("Не выполнено", "Произошла ошибка при добавлении материала", "Ok");
             }
         }
 

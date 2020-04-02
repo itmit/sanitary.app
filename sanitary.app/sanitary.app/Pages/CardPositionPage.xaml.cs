@@ -8,13 +8,11 @@ namespace sanitary.app.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CardPositionPage : ContentPage
 	{
-		private int _number = 0;
-		private int _price = 100;
+		private int _number = 1;
         public CardPositionPage()
         {
             InitializeComponent();
 			ValueLabel.Text = "1";
-			PriceLabel.Text = "100";
 		}
 
 		private void ImageButton_OnClicked(object sender, EventArgs e)
@@ -36,21 +34,11 @@ namespace sanitary.app.Pages
 		private void GetSubtract()
 		{
 			_number--;
-            if(_number < 0)
+            if(_number < 1)
             {
-                _number = 0;
+                _number = 1;
             }
 			ValueLabel.Text = _number.ToString();
-		}
-
-		private void Picker_OnSelectedIndexChanged(object sender, EventArgs e)
-		{
-			AddButton.IsEnabled = true;
-		}
-
-		private void AddButton_OnClicked(object sender, EventArgs e)
-		{
-			Navigation.PopToRootAsync();
 		}
 	}
 }

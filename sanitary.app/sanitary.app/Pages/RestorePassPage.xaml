@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:sanitary.app.Controls;assembly=sanitary.app"
+             mc:Ignorable="d"
+             x:Class="sanitary.app.Pages.RestorePassPage">
+    <ContentPage.Content>
+        <StackLayout Margin="0,0" Spacing="0">
+            <Frame Style="{StaticResource RegFrame}" Margin="15,0,15,10" IsVisible="{Binding IsFirstStep}">
+                <controls:AuthEntry Placeholder="Ваш E-mail" Style="{StaticResource AuthEntry}" Text="{Binding EmailEntry}"/>
+            </Frame>
+            <Button Text="Отправить код" Margin="15,0,15,10" IsEnabled="False" IsVisible="{Binding IsFirstStep}" Command="{Binding SendEmailCommand}"/>
+            
+            <Frame Style="{StaticResource RegFrame}" Margin="15,0,15,10" IsVisible="{Binding IsSecondStep}">
+                <controls:AuthEntry Placeholder="Код" IsPassword="True" Style="{StaticResource AuthEntry}" Text="{Binding CodeEntry}"/>
+            </Frame>
+            <Frame Style="{StaticResource RegFrame}" Margin="15,0,15,20" IsVisible="{Binding IsSecondStep}">
+                <controls:AuthEntry Placeholder="Придумайте пароль" IsPassword="True" Style="{StaticResource AuthEntry}" Text="{Binding PasswordEntry}"/>
+            </Frame>
+            <Frame Style="{StaticResource RegFrame}" Margin="15,0,15,20" IsVisible="{Binding IsSecondStep}">
+                <controls:AuthEntry Placeholder="Повторите пароль" IsPassword="True" Style="{StaticResource AuthEntry}" Text="{Binding RepeatPasswordEntry}"/>
+            </Frame>
+            <Button Text="Сменить пароль" Margin="15,0,15,10" IsEnabled="False" IsVisible="{Binding IsSecondStep}" Command="{Binding SendPasswordCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

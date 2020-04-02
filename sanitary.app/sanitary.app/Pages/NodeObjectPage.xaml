@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:binding="clr-namespace:sanitary.app.ViewModels;assembly=sanitary.app"
+             xmlns:converters="clr-namespace:sanitary.app.Converters"
              mc:Ignorable="d"
              x:Class="sanitary.app.Pages.NodeObjectPage"
              BackgroundColor="#f3f3f3">
@@ -14,8 +14,8 @@
             <ListView 
                 x:Name="NodeListView"
                 BackgroundColor="White"
+                SelectionMode="None"
                 HasUnevenRows="True"
-                SelectionMode="None" 
                 SeparatorVisibility="None" 
                 IsGroupingEnabled="True"
                 IsPullToRefreshEnabled="True"
@@ -30,25 +30,50 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="1"/>
                                 </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
                                 <Label 
                                     Grid.Row="0"
                                     Grid.Column="0"
-                                    Text="{Binding GroupKey.Name}" 
+                                    Text="{Binding GroupKey.Name}"  
                                     Margin="5,25,0,10" 
                                     TextColor="Black" 
                                     FontSize="Body" 
-                                    FontFamily="GilroySemiBold.ttf#GilroySemiBold"/>
-                                <Button 
-                                    Style="{StaticResource CopyButton}"
+                                    FontFamily="GilroySemiBold.ttf#GilroySemiBold">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.OpenNodePageCommand, Source={x:Reference NodeListView}}"
+                                            CommandParameter="{Binding GroupKey}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <ImageButton 
                                     Grid.Row="0"
                                     Grid.Column="1"
-                                    Text="Скопировать узел в..." 
-                                    HorizontalOptions="EndAndExpand" 
+                                    Source="copy.png" 
+                                    WidthRequest="30" 
+                                    HeightRequest="15" 
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="EndAndExpand"
                                     Command="{Binding Path=BindingContext.ActivateCopyNodeCommand, Source={x:Reference NodeListView}}"
                                     CommandParameter="{Binding GroupKey.uuid}"/>
+                                <ImageButton 
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    Source="ic_plus_type2_4x.png" 
+                                    Margin="30,0"
+                                    WidthRequest="30" 
+                                    HeightRequest="15" 
+                                    BackgroundColor="Transparent" 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="EndAndExpand" 
+                                    Command="{Binding Path=BindingContext.OpenCatalogCommand, Source={x:Reference NodeListView}}"/>
                                 <BoxView 
                                     Grid.Row="1"
-                                    Grid.ColumnSpan="2"
+                                    Grid.ColumnSpan="3"
                                     HeightRequest="1" 
                                     BackgroundColor="#CCCCCC"/>
                             </Grid>
@@ -62,29 +87,23 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Text="{Binding Title}" WidthRequest="145" TextColor="Black" FontSize="Default" Margin="5,0,0,0" VerticalOptions="Start" HorizontalTextAlignment="Start"/>
+                                <Label Grid.Column="0" Text="{Binding Title}" TextColor="Black" FontSize="Default" Margin="5,0,0,0" VerticalOptions="Start" HorizontalTextAlignment="Start"/>
                                 <Label Grid.Column="1" Text="{Binding Quantity}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center"/>
-                                <Label Grid.Column="2" Text="{Binding Price}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center"/>
-                                <Label Grid.Column="3" Text="{Binding TotalAmount}" TextColor="Black" Margin="0,0,5,0" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="End"/>
+                                <!--<Label Grid.Column="2" Text="{Binding Price}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center"/>
+                                <Label Grid.Column="3" Text="{Binding TotalAmount}" TextColor="Black" Margin="0,0,5,0" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="End"/>-->
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             <Button 
-                Text="Посмотреть смету" 
-                VerticalOptions="EndAndExpand" 
-                Command="{Binding Path=BindingContext.OpenEstimateCommand, Source={x:Reference NodeListView}}"/>
-            <Button 
                 Text="Редактировать объект" 
                 VerticalOptions="EndAndExpand" 
                 Command="{Binding Path=BindingContext.OpenObjectEditCommand, Source={x:Reference NodeListView}}"/>
+            <Button 
+                Text="Посмотреть смету" 
+                VerticalOptions="EndAndExpand" 
+                Command="{Binding Path=BindingContext.OpenEstimateCommand, Source={x:Reference NodeListView}}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

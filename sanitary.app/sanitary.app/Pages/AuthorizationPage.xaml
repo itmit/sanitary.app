@@ -20,7 +20,12 @@
                     <Frame Style="{StaticResource AuthFrame}" Margin="20,0,20,20">
                         <customEntry:AuthEntry Placeholder="Пароль" IsPassword="True" Style="{StaticResource AuthEntry}" Text="{Binding PasswordEntry}"></customEntry:AuthEntry>
                     </Frame>
-                    <Button Text="Вход" Margin="20,0,20,110" Command="{Binding OnLoginButtonClicked}"/>
+                    <Button Text="Вход" Margin="20,0,20,90" Command="{Binding OnLoginButtonClicked}"/>
+                    <Label Text="Забыли пароль?" Margin="0,0,0,20" TextColor="#2579BF" HorizontalOptions="Center" FontSize="Body" FontFamily="GilroySemiBold.ttf#GilroySemiBold">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenRestorePassCommand}" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
                     <Label Text="Зарегистрироваться" TextColor="#2579BF" HorizontalOptions="Center" FontSize="Body" FontFamily="GilroySemiBold.ttf#GilroySemiBold">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenRegisterationCommand}" NumberOfTapsRequired="1"/>

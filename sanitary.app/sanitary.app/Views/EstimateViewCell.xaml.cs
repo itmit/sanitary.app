@@ -1,5 +1,4 @@
-﻿using sanitary.app.ViewModels;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace sanitary.app.Views
@@ -10,7 +9,6 @@ namespace sanitary.app.Views
         public EstimateViewCell()
         {
             InitializeComponent();
-			BindingContext = new DownloadEstimatesViewModel();
 		}
     }
 }

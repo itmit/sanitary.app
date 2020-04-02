@@ -27,6 +27,7 @@ namespace sanitary.app.Services
             SetAuthenticationHeader();
         }
 
+        #region Get data methods
         public async Task<Object> GetObjectFullInfo(string ObjectUuid)
         {
             if (IsThereInternet() == false)
@@ -62,7 +63,7 @@ namespace sanitary.app.Services
                     string errorInfo = await response.Content.ReadAsStringAsync();
                     string errorMessage = await ParseErrorMessageAsync(errorInfo);
 
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => { await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка", errorMessage, "OK"); });
+                    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => { await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorMessage, "OK"); });
                 }
             }
             catch (System.Exception ex)
@@ -257,7 +258,9 @@ namespace sanitary.app.Services
 
             return FilePath;
         }
+        #endregion
 
+        #region Add/Update methods
         public async Task<bool> SendNewObjectAsync(Models.Object CreatedObject)
         {
             if (IsThereInternet() == false)
@@ -292,7 +295,7 @@ namespace sanitary.app.Services
                     string errorInfo = await response.Content.ReadAsStringAsync();
                     string errorMessage = await ParseErrorMessageAsync(errorInfo);
 
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => { await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка", errorMessage, "OK"); });
+                    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => { await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorMessage, "OK"); });
 
                     return false;
                 }
@@ -300,7 +303,12 @@ namespace sanitary.app.Services
             }
             catch (System.Exception ex)
             {
-                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+                System.Console.WriteLine("An exception ({0}) occurred.", ex.GetType().Name);
+                System.Console.WriteLine("Message:\n   {0}\n", ex.Message);
+                System.Console.WriteLine("Stack Trace:\n   {0}\n", ex.StackTrace);
+
+                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.GetType().Name + "\n" + ex.Message + "\n" + ex.StackTrace, "OK");
+                //await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка отправки данных", e.InnerException.Message, "OK");
                 return false;
             }
         }
@@ -345,15 +353,20 @@ namespace sanitary.app.Services
                     string errorInfo = await response.Content.ReadAsStringAsync();
                     string errorMessage = await ParseErrorMessageAsync(errorInfo);
 
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => { await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка", errorMessage, "OK"); });
+                    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => { await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorMessage, "OK"); });
 
                     return false;
                 }
 
             }
-            catch (System.Exception ex)
+            catch (HttpRequestException e)
             {
-                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+                //System.Console.WriteLine("An exception ({0}) occurred.", ex.GetType().Name);
+                //System.Console.WriteLine("Message:\n   {0}\n", ex.Message);
+                //System.Console.WriteLine("Stack Trace:\n   {0}\n", ex.StackTrace);
+
+                //await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Ошибка отправки данных", ex.GetType().Name + "\n" + ex.Message + "\n" + ex.StackTrace, "OK");
+                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", e.InnerException.Message, "OK");
                 return false;
             }
         }
@@ -402,7 +415,7 @@ namespace sanitary.app.Services
             }
             catch (System.Exception ex)
             {
-                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
                 System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
@@ -443,7 +456,7 @@ namespace sanitary.app.Services
                 else
                 {
                     string errorInfo = await response.Content.ReadAsStringAsync();
-                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("ERROR", errorInfo, "OK");
+                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorInfo, "OK");
                     System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", errorInfo);
                     return;
                 }
@@ -451,11 +464,13 @@ namespace sanitary.app.Services
             }
             catch (System.Exception ex)
             {
-                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
                 System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
         }
+        #endregion
 
+        #region Delete methods
         public async Task<bool> DeleteUserObjectsAsync(Object objectToDelete)
         {
             if (IsThereInternet() == false)
@@ -484,14 +499,14 @@ namespace sanitary.app.Services
                 else
                 {
                     string errorInfo = await response.Content.ReadAsStringAsync();
-                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("ERROR", errorInfo, "OK");
+                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorInfo, "OK");
                     return false;
                 }
 
             }
             catch (System.Exception ex)
             {
-                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
                 System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
@@ -526,19 +541,62 @@ namespace sanitary.app.Services
                 else
                 {
                     string errorInfo = await response.Content.ReadAsStringAsync();
-                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("ERROR", errorInfo, "OK");
+                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorInfo, "OK");
                     return false;
                 }
 
             }
             catch (System.Exception ex)
             {
-                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("ERROR", ex.Message, "OK");
+                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
                 System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
             return false;
         }
+
+        public async Task<bool> DeleteMaterialFromNodeAsync(string materialUuid)
+        {
+            if (IsThereInternet() == false)
+            {
+                return false;
+            }
+
+            if (!AuthenticationHeaderIsSet)
+            {
+                SetAuthenticationHeader();
+            }
+
+            string restMethod = "node/destroyItemFromNode/" + materialUuid;
+            System.Uri uri = new System.Uri(string.Format(Constants.RestUrl, restMethod));
+
+            try
+            {
+                HttpResponseMessage response = null;
+                response = client.DeleteAsync(uri).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseMessage = await response.Content.ReadAsStringAsync();
+                    return true;
+                }
+                else
+                {
+                    string errorInfo = await response.Content.ReadAsStringAsync();
+                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorInfo, "OK");
+                    return false;
+                }
+
+            }
+            catch (System.Exception ex)
+            {
+                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
+                System.Diagnostics.Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
+
+            return false;
+        }
+        #endregion
 
         #region Utility private methods
         private bool IsJson(string input)

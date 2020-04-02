@@ -15,6 +15,8 @@ namespace sanitary.app.Services
         Task<List<Directory>> GetPositionsAsync(string directoryUuid);
         Task<Position> GetSinglePositionAsync(string postitionUuid);
 
+        Task<List<Directory>> SearchDirectoriesAsync(string searchText);
+
         bool DoesDirectoryExist(Directory directory);
 
     }
