@@ -56,7 +56,14 @@ namespace sanitary.app.PageModels
                 return new Command((param) => 
                 {
                     var NodeToDelete = (Grouping<Node, Material>)param;
-                    DeleteNodeAsync(NodeToDelete);
+                    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        var confirmResponse = await CoreMethods.DisplayAlert("Внимание", "Вы действительно хотите удалить узел: " + NodeToDelete.GroupKey.Name, "Да", "Нет");
+                        if (confirmResponse)
+                        {
+                            DeleteNodeAsync(NodeToDelete);
+                        }
+                    });
                 });
             }
 
@@ -116,11 +123,13 @@ namespace sanitary.app.PageModels
                 if (response == true)
                 {
                     ObjectNodes.Remove(nodeToDelete);
+                    await CoreMethods.DisplayAlert("Выполнено", "Узел удален", "OK");
                 }
             }
             else
             {
                 ObjectNodes.Remove(nodeToDelete);
+                await CoreMethods.DisplayAlert("Выполнено", "Узел удален", "OK");
             }
         }
 

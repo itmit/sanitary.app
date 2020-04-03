@@ -27,7 +27,14 @@ namespace sanitary.app.PageModels
                 return new Xamarin.Forms.Command(async (param) =>
                 {
                     string materialUuid = (string)param;
-                    await DeleteMaterialAsync(materialUuid);
+                    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        var confirmResponse = await CoreMethods.DisplayAlert("Внимание", "Вы действительно хотите удалить материал", "Да", "Нет");
+                        if (confirmResponse)
+                        {
+                            await DeleteMaterialAsync(materialUuid);
+                        }
+                    });
                 });
             }
         }
