@@ -52,8 +52,8 @@
                                     Grid.Column="1"
                                     Aspect="Fill"
                                     Source="copy.png" 
-                                    WidthRequest="15" 
-                                    HeightRequest="15" 
+                                    WidthRequest="20" 
+                                    HeightRequest="20" 
                                     BackgroundColor="Transparent" 
                                     VerticalOptions="Center" 
                                     HorizontalOptions="EndAndExpand"
@@ -65,8 +65,8 @@
                                     Aspect="Fill"
                                     Source="ic_plus_type2_4x.png" 
                                     Margin="30,0"
-                                    WidthRequest="15" 
-                                    HeightRequest="15" 
+                                    WidthRequest="20" 
+                                    HeightRequest="20" 
                                     BackgroundColor="Transparent" 
                                     VerticalOptions="Center" 
                                     HorizontalOptions="EndAndExpand" 
@@ -88,7 +88,7 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Label Grid.Column="0" Text="{Binding Title}" TextColor="Black" FontSize="Default" Margin="5,0,0,0" VerticalOptions="Start" HorizontalTextAlignment="Start"/>
-                                <Label Grid.Column="1" Text="{Binding Quantity}" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="Center"/>
+                                <Label Grid.Column="1" Text="{Binding Quantity}" Margin="10, 0" TextColor="Black" FontSize="Default" VerticalOptions="Start" HorizontalTextAlignment="End"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
