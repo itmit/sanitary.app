@@ -147,6 +147,15 @@ namespace sanitary.app.PageModels
                         Realm.Add(user, true);
                     });
 
+                    if(userObj["data"]["client"]["is_full_access"].ToString() == "1")
+                    {
+                        App.IsUserHaveFullAccess = true;
+                    }
+                    else
+                    {
+                        App.IsUserHaveFullAccess = false;
+                    }
+
                     return true;
                 }
                 else

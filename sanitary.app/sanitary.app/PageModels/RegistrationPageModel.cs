@@ -135,6 +135,9 @@ namespace sanitary.app.PageModels
                     JObject resultArray = JObject.Parse(result);
 
                     UserToken = resultArray["data"]["access_token"].ToString();
+
+                    App.IsUserHaveFullAccess = false;
+
                     return true;
                 }
                 else

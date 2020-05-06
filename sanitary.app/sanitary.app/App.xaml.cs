@@ -12,13 +12,13 @@ namespace sanitary.app
     public partial class App : Xamarin.Forms.Application
     {
         public static bool IsUserLoggedIn { get; set; }
+        public static bool IsUserHaveFullAccess { get; set; }
 
         public App()
 		{
 			InitializeComponent();
 
-			On<Xamarin.Forms.PlatformConfiguration.Android>()
-				.UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
+			On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
 
             SetUpIoC();
 

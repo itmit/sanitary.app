@@ -247,6 +247,13 @@ namespace sanitary.app.Services
                     JObject resultArr = JObject.Parse(content);
                     FilePath = resultArr["data"].First.ToString();
                 }
+                else
+                {
+                    string errorInfo = await response.Content.ReadAsStringAsync();
+                    string errorMessage = ParseErrorMessage(errorInfo);
+
+                    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => { await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorMessage, "OK"); });
+                }
             }
             catch (System.Exception)
             {
