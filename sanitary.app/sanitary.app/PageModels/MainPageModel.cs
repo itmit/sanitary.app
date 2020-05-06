@@ -8,6 +8,13 @@ namespace sanitary.app.PageModels
     [AddINotifyPropertyChangedInterface]
     public class MainPageModel : FreshBasePageModel
     {
+        public bool IsUserHaveFullAccess
+        {
+            get
+            {
+                return App.IsUserHaveFullAccess;
+            }
+        }
         public MainPageModel()
         {
 
@@ -45,6 +52,10 @@ namespace sanitary.app.PageModels
                     break;
                 case "Add object":
                     await CoreMethods.SwitchSelectedTab<ObjectPlusPageModel>();
+                    break;
+                case "Purchase":
+                    var test = new Services.PaymentService();
+                    await test.MakePurchase();
                     break;
                 case "Open Telegram":
                     await Xamarin.Essentials.Launcher.OpenAsync(new System.Uri("tg://resolve?domain=santech_inform"));

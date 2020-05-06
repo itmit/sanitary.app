@@ -16,6 +16,7 @@
                     <Button Text="Сметы" Margin="0,20" Command="{Binding MenuTappedCommand}" CommandParameter="Estimates"/>
                     <Button Text="Объекты" Command="{Binding MenuTappedCommand}" CommandParameter="Object"/>
                     <Button Text="+ Объект" Margin="0,20" Command="{Binding MenuTappedCommand}" CommandParameter="Add object"/>
+                    <Button Text="Купить полный доступ" Margin="0,20" Command="{Binding MenuTappedCommand}" CommandParameter="Purchase" IsVisible="{Binding IsUserHaveFullAccess}"/>
                     <Frame CornerRadius="14" BackgroundColor="#2579BF" HeightRequest="50" Padding="0" IsClippedToBounds="True">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                             <Image Source="ic_telegram_4x.png" WidthRequest="12" HeightRequest="12" VerticalOptions="Center"/>
