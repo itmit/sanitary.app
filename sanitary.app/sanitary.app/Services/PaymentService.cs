@@ -119,7 +119,9 @@ namespace sanitary.app.Services
                 else
                 {
                     string errorInfo = await response.Content.ReadAsStringAsync();
-                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", "Произошла ошибка на сервере.", "OK");
+                    string errorMessage = ParseErrorMessage(errorInfo);
+
+                    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => { await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorMessage, "OK"); });
                     return;
                 }
             }

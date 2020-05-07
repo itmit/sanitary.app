@@ -63,6 +63,23 @@ namespace sanitary.app.PageModels
             }
         }
 
+        public ICommand ExitProfileCommand
+        {
+            get
+            {
+                return new Xamarin.Forms.Command(async () =>
+                {
+                    bool answer = await CoreMethods.DisplayAlert("Внимание", "Вы действительно хотите выйти из приложения?", "Да", "Нет");
+
+                    if (answer == true)
+                    {
+                        ExitAppAsync();
+                    }
+                });
+            }
+        }
+
+
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
             base.ViewIsAppearing(sender, e);
@@ -134,6 +151,21 @@ namespace sanitary.app.PageModels
             CurrentUser = realm.All<User>().Last();
 
             UserEmail = CurrentUser.Email;
+        }
+
+        private async void ExitAppAsync()
+        {
+            Realm CurrentRealm = Realm.GetInstance();
+            CurrentRealm.Write(() =>
+            {
+                CurrentRealm.RemoveAll<User>();
+            });
+
+            App.IsUserLoggedIn = false;
+
+            await CoreMethods.PopPageModel(true, false, true);
+            await CoreMethods.SwitchSelectedTab<MainPageModel>();
+            CoreMethods.SwitchOutRootNavigation(NavigationContainerNames.AuthenticationContainer);
         }
 
         private bool IsThereInternet()
