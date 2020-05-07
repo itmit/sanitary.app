@@ -53,6 +53,7 @@
     <BundleAssemblies>false</BundleAssemblies>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AndroidLinkTool>r8</AndroidLinkTool>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
