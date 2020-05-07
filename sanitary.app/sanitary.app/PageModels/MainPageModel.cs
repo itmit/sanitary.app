@@ -8,11 +8,11 @@ namespace sanitary.app.PageModels
     [AddINotifyPropertyChangedInterface]
     public class MainPageModel : FreshBasePageModel
     {
-        public bool IsUserHaveFullAccess
+        public bool UserDoesNotHaveFullAccess
         {
             get
             {
-                return App.IsUserHaveFullAccess;
+                return App.IsUserHaveFullAccess == false;
             }
         }
         public MainPageModel()
