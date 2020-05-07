@@ -72,7 +72,7 @@
                     </Grid>
                     <Label Text="Выйти из профиля">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ExitProfile}"/>
+                            <TapGestureRecognizer Command="{Binding ExitProfileCommand}"/>
                         </Label.GestureRecognizers>
                     </Label>
                 </StackLayout>
