@@ -37,6 +37,8 @@
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
     <MandroidI18n />
+    <JavaMaximumHeapSize>
+    </JavaMaximumHeapSize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -81,6 +83,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.4.0-pre2" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdMobRenderer.cs" />
     <Compile Include="CustomAuthEntry.cs" />
     <Compile Include="ExtendedTabbedPageRenderer.cs" />
     <Compile Include="MainActivity.cs" />

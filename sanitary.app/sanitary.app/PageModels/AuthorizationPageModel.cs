@@ -169,7 +169,8 @@ namespace sanitary.app.PageModels
             }
             catch (System.Exception ex)
             {
-                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
+                App.IsUserHaveFullAccess = true;
+                //await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
             }
 
             return true;

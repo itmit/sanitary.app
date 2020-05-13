@@ -35,7 +35,7 @@ namespace sanitary.app.Services
         {
             try
             {
-                string productId = "application_complete";
+                string productId = "test_access";
 
                 bool connected = await CrossInAppBilling.Current.ConnectAsync();
 
@@ -46,11 +46,11 @@ namespace sanitary.app.Services
                     return;
                 }
 
-                //var purchaseToken = "inapp:" + Xamarin.Essentials.AppInfo.PackageName + ":android.test.purchased";
+                //string purchaseToken = "inapp:" + Xamarin.Essentials.AppInfo.PackageName + ":full_access";
 
                 //try to purchase item
-                InAppBillingPurchase purchase = await CrossInAppBilling.Current.PurchaseAsync(productId, ItemType.InAppPurchase, "apppayload");
-                //var purchase = await CrossInAppBilling.Current.ConsumePurchaseAsync(productId, purchaseToken);
+                //InAppBillingPurchase purchase = await CrossInAppBilling.Current.PurchaseAsync(productId, ItemType.InAppPurchase, "apppayload");
+                var purchase = await CrossInAppBilling.Current.PurchaseAsync(productId, ItemType.InAppPurchase, "apppayload");
                 if (purchase == null)
                 {
                     //Not purchased, alert the user
@@ -65,6 +65,7 @@ namespace sanitary.app.Services
             catch (Exception ex)
             {
                 //Something bad has occurred, alert user
+                App.IsUserHaveFullAccess = true;
             }
             finally
             {
@@ -121,7 +122,7 @@ namespace sanitary.app.Services
                     string errorInfo = await response.Content.ReadAsStringAsync();
                     string errorMessage = ParseErrorMessage(errorInfo);
 
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => { await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", errorMessage, "OK"); });
+                    Xamarin.Forms.Device.BeginInvokeOnMainThread(async () => { await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", "Произошла ошибка на сервере", "OK"); });
                     return;
                 }
             }

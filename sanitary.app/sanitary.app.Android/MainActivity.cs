@@ -1,5 +1,4 @@
-﻿
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.Widget;
@@ -23,6 +22,9 @@ namespace sanitary.app.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            //MobileAds.Initialize(ApplicationContext, Constants.AppId);
+
             LoadApplication(new App());
         }
 

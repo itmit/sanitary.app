@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using sanitary.app.Controls;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace sanitary.app.Pages
@@ -15,7 +16,18 @@ namespace sanitary.app.Pages
         public DirectoryPage()
         {
             InitializeComponent();
-		}
+
+            //AdmobControl admobControl = new AdmobControl()
+            //{
+            //    AdUnitId = Constants.BannerId
+            //};
+            //Label adLabel = new Label() { Text = "Ads will be displayed here!" };
+
+            //Content = new StackLayout()
+            //{
+            //    Children = { adLabel, admobControl }
+            //};
+        }
 
         protected override bool OnBackButtonPressed()
         {
