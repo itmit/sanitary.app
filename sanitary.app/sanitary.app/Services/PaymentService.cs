@@ -35,7 +35,7 @@ namespace sanitary.app.Services
         {
             try
             {
-                string productId = "test_access";
+                string productId = "full_access_purchase";
 
                 bool connected = await CrossInAppBilling.Current.ConnectAsync();
 
@@ -47,9 +47,9 @@ namespace sanitary.app.Services
                 }
 
                 //string purchaseToken = "inapp:" + Xamarin.Essentials.AppInfo.PackageName + ":full_access";
+                //InAppBillingPurchase purchase = await CrossInAppBilling.Current.PurchaseAsync(productId, ItemType.InAppPurchase, "apppayload");
 
                 //try to purchase item
-                //InAppBillingPurchase purchase = await CrossInAppBilling.Current.PurchaseAsync(productId, ItemType.InAppPurchase, "apppayload");
                 var purchase = await CrossInAppBilling.Current.PurchaseAsync(productId, ItemType.InAppPurchase, "apppayload");
                 if (purchase == null)
                 {
