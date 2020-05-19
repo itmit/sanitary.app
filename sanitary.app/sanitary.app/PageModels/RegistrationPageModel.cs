@@ -63,6 +63,7 @@ namespace sanitary.app.PageModels
                 App.IsUserLoggedIn = true;
 
                 user.Token = UserToken;
+                user.IsUserHaveFullAccess = false;
 
                 Realm.Write(() =>
                 {

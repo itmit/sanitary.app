@@ -135,18 +135,6 @@ namespace sanitary.app.PageModels
                     string userInfo = await response.Content.ReadAsStringAsync();
                     JObject userObj = JObject.Parse(userInfo);
 
-                    User user = new User
-                    {
-                        Name = userObj["data"]["client"]["name"].ToString(),
-                        Email = userObj["data"]["client"]["email"].ToString(),
-                        Token = userObj["data"]["access_token"].ToString(),
-                    };
-
-                    Realm.Write(() =>
-                    {
-                        Realm.Add(user, true);
-                    });
-
                     if(userObj["data"]["client"]["is_full_access"].ToString() == "1")
                     {
                         App.IsUserHaveFullAccess = true;
@@ -155,6 +143,19 @@ namespace sanitary.app.PageModels
                     {
                         App.IsUserHaveFullAccess = false;
                     }
+
+                    User user = new User
+                    {
+                        Name = userObj["data"]["client"]["name"].ToString(),
+                        Email = userObj["data"]["client"]["email"].ToString(),
+                        Token = userObj["data"]["access_token"].ToString(),
+                        IsUserHaveFullAccess = App.IsUserHaveFullAccess
+                    };
+
+                    Realm.Write(() =>
+                    {
+                        Realm.Add(user, true);
+                    });
 
                     return true;
                 }
@@ -169,8 +170,7 @@ namespace sanitary.app.PageModels
             }
             catch (System.Exception ex)
             {
-                App.IsUserHaveFullAccess = true;
-                //await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
+                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", ex.Message, "OK");
             }
 
             return true;

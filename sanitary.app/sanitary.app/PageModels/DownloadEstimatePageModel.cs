@@ -82,7 +82,11 @@ namespace sanitary.app.PageModels
         private async void DownloadPDFAsync()
         {
             var filePath = await _objectStorage.GetEstimatePdfUrlAsync(Object.uuid);
-            downloader.DownloadFile(string.Format(Constants.StorageDomainUrl, filePath), "Santeh Downloads");
+
+            if(filePath != String.Empty & filePath != "")
+            {
+                downloader.DownloadFile(string.Format(Constants.StorageDomainUrl, filePath), "Santeh Downloads");
+            }
         }
 
         private void OnFileDownloaded(object sender, DownloadEventArgs e)

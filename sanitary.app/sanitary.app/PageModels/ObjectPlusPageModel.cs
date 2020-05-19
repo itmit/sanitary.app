@@ -105,6 +105,11 @@ namespace sanitary.app.PageModels
 
         public void AddNode()
         {
+            if(App.IsUserHaveFullAccess == false & ObjectNodes.Count >= 2)
+            {
+                CoreMethods.DisplayAlert("Не выполнено", "Без расширенного доступа, вы не можете создавать больше одного объекта, добавлять больше двух узлов и скачивать PDF отчеты.", "Ok");
+                return;
+            }
             var newNode = new Node
             {
                 Name = "",

@@ -84,11 +84,6 @@ namespace sanitary.app.PageModels
         {
             base.ViewIsAppearing(sender, e);
 
-            if (IsThereInternet() == false)
-            {
-                return;
-            }
-
             GetUserInfo();
         }
 
@@ -166,11 +161,6 @@ namespace sanitary.app.PageModels
             await CoreMethods.PopPageModel(true, false, true);
             await CoreMethods.SwitchSelectedTab<MainPageModel>();
             CoreMethods.SwitchOutRootNavigation(NavigationContainerNames.AuthenticationContainer);
-        }
-
-        private bool IsThereInternet()
-        {
-            return Plugin.Connectivity.CrossConnectivity.Current.IsConnected;
         }
     }
 }

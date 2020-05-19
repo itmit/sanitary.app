@@ -11,5 +11,7 @@ namespace sanitary.app.Models
         public string Password { get; set; }
 
         public string Token { get; internal set; }
+
+        public bool IsUserHaveFullAccess { get; set; }
     }
 }

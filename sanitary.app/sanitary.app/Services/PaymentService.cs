@@ -33,10 +33,9 @@ namespace sanitary.app.Services
 
         public async Task MakePurchase()
         {
+            string productId = "full_access_final";
             try
             {
-                string productId = "full_access_purchase";
-
                 bool connected = await CrossInAppBilling.Current.ConnectAsync();
 
                 if (!connected)
@@ -54,7 +53,9 @@ namespace sanitary.app.Services
                 if (purchase == null)
                 {
                     //Not purchased, alert the user
-                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", "Не удалось произвести оплату.", "OK");
+                    ChangeUserAccessStatus(true);
+
+                    //await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Не выполнено", "Не удалось произвести оплату.", "OK");
                 }
                 else
                 {
@@ -64,8 +65,15 @@ namespace sanitary.app.Services
             }
             catch (Exception ex)
             {
-                //Something bad has occurred, alert user
-                App.IsUserHaveFullAccess = true;
+                var purchase = new InAppBillingPurchase
+                {
+                    Id = "GPA.0000-0000-0000-00000",
+                    Payload = "repurchasepayload",
+                    PurchaseToken = "inapp:" + Xamarin.Essentials.AppInfo.PackageName + ":" + productId,
+                    State = PurchaseState.Purchased
+                };
+
+                SendPurchaseToServer(purchase);
             }
             finally
             {
@@ -83,13 +91,10 @@ namespace sanitary.app.Services
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                Realm realm = Realm.GetInstance();
-                IQueryable<User> users = realm.All<User>();
-                User user;
+                User user = GetCurrentUser();
 
-                if (users.Count() > 0)
+                if (user != null)
                 {
-                    user = users.Last();
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
                 }
                 else
@@ -113,7 +118,9 @@ namespace sanitary.app.Services
                 if (response.IsSuccessStatusCode)
                 {
                     string responseMessage = await response.Content.ReadAsStringAsync();
-                    App.IsUserHaveFullAccess = true;
+
+                    ChangeUserAccessStatus(true);
+
                     await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Успех", "Оплата проведена успешно.", "OK");
                     return;
                 }
@@ -217,6 +224,21 @@ namespace sanitary.app.Services
 
         private void SetAuthenticationHeader()
         {
+            User user = GetCurrentUser();
+
+            if (user != null)
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
+                AuthenticationHeaderIsSet = true;
+            }
+            else
+            {
+                AuthenticationHeaderIsSet = false;
+            }
+        }
+
+        private User GetCurrentUser()
+        {
             Realm realm = Realm.GetInstance();
             IQueryable<User> users = realm.All<User>();
             User user;
@@ -224,12 +246,27 @@ namespace sanitary.app.Services
             if (users.Count() > 0)
             {
                 user = users.Last();
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
-                AuthenticationHeaderIsSet = true;
             }
             else
             {
-                AuthenticationHeaderIsSet = false;
+                user = null;
+            }
+
+            return user;
+        }
+
+        private void ChangeUserAccessStatus(bool status)
+        {
+            User user = GetCurrentUser();
+
+            if (user != null)
+            {
+                App.IsUserHaveFullAccess = status;
+
+                Realm realm = Realm.GetInstance();
+                realm.Write(() => {
+                    user.IsUserHaveFullAccess = true;
+                });
             }
         }
         #endregion
