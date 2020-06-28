@@ -65,15 +65,15 @@ namespace sanitary.app.Services
             }
             catch (Exception ex)
             {
-                var purchase = new InAppBillingPurchase
-                {
-                    Id = "GPA.0000-0000-0000-00000",
-                    Payload = "repurchasepayload",
-                    PurchaseToken = "inapp:" + Xamarin.Essentials.AppInfo.PackageName + ":" + productId,
-                    State = PurchaseState.Purchased
-                };
+                //var purchase = new InAppBillingPurchase
+                //{
+                //    Id = "GPA.0000-0000-0000-00000",
+                //    Payload = "repurchasepayload",
+                //    PurchaseToken = "inapp:" + Xamarin.Essentials.AppInfo.PackageName + ":" + productId,
+                //    State = PurchaseState.Purchased
+                //};
 
-                SendPurchaseToServer(purchase);
+                //SendPurchaseToServer(purchase);
             }
             finally
             {
